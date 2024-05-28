@@ -98,26 +98,20 @@
 
 <body class="light ">
     <div class="wrapper vh-100">
-        <div class="row align-items-center h-100">
-            <form class="col-lg-3 col-md-4 col-10 mx-auto text-center" action="{{ route('login') }}" method="post">
+        <div class="d-flex align-items-center h-100">
+            <form class="col-lg-4 col-md-6 col-10 mx-auto text-center" action="{{ route('login') }}" method="post">
                 @csrf
-                <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
-                    <svg version="1.1" id="logo" class="navbar-brand-img brand-md"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 120 120" xml:space="preserve">
-                        <g>
-                            <polygon class="st0" points="78,105 15,105 24,87 87,87 	" />
-                            <polygon class="st0" points="96,69 33,69 42,51 105,51 	" />
-                            <polygon class="st0" points="78,33 15,33 24,15 87,15 	" />
-                        </g>
-                    </svg>
-                </a>
-                <h1 class="h6 mb-3">Sign in</h1>
+                <div class="mb-3">
+                    <img width="50" src="{{ asset('image/auth/twemoji_letter-w.png') }}" alt="">
+                </div>
+
+                <h5 class="mb-5 font-weight-bold">WESAVS Login</h5>
                 <div class="form-group">
-                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <label for="inputEmail" class="d-flex">Alamat Email</label>
                     <input id="email" type="email"
                         class="form-control form-control-lg @error('email') is-invalid @enderror" name="email"
-                        value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        value="{{ old('email') }}" placeholder="example@mail.com" required autocomplete="email"
+                        autofocus>
 
                     @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -126,10 +120,10 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword" class="sr-only">Password</label>
+                    <label for="inputPassword" class="d-flex">Password</label>
                     <input id="password" type="password"
                         class="form-control form-control-lg @error('password') is-invalid @enderror" name="password"
-                        required autocomplete="current-password">
+                        placeholder="********" required autocomplete="current-password">
 
                     @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -137,16 +131,29 @@
                         </span>
                     @enderror
                 </div>
-                <div class="checkbox mb-3">
-                    <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                        {{ old('remember') ? 'checked' : '' }}>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="text-left ml-4">
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                            {{ old('remember') ? 'checked' : '' }}>
 
-                    <label class="form-check-label" for="remember">
-                        {{ __('Remember Me') }}
-                    </label>
+                        <label class="form-check-label" for="remember">
+                            {{ __('Ingat Saya') }}
+                        </label>
+                    </div>
+                    <div class="forget-password">
+                        @if (Route::has('password.request'))
+                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                                <label class="form-check-label">
+                                    Lupa Kata Sandi?
+                                </label>
+                            </a>
+                        @endif
+                    </div>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Let me in</button>
-                <p class="mt-5 mb-3 text-muted">© 2020</p>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Masuk Sekarang</button>
+                <h6 class="my-4">
+                    Belum punya akun? <a href="{{ url('register') }}">Daftar Sekarang</a>
+                </h6>
             </form>
         </div>
     </div>
