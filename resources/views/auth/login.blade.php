@@ -1,5 +1,7 @@
 @extends('layouts.auth')
 
+@section('title', 'Login WESAVS')
+
 @section('content')
     <div class="wrapper vh-100">
         <div class="d-flex align-items-center h-100">
