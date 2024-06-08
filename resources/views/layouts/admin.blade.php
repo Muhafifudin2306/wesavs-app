@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('css/quill.snow.css') }}">
     <!-- Date Range Picker CSS -->
     <link rel="stylesheet" href="{{ asset('css/daterangepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/notiflix/src/notiflix.css') }}">
     <!-- App CSS -->
     <link rel="stylesheet" href="{{ asset('css/app-light.css') }}" id="lightTheme">
     <link rel="stylesheet" href="{{ asset('css/app-dark.css') }}" id="darkTheme" disabled>
@@ -235,17 +236,8 @@
         }
     </script>
     <script src="{{ asset('js/apps.js') }}"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'UA-56159088-1');
-    </script>
+    <script src="{{ asset('assets/notiflix/src/notiflix.js') }}"></script>
+    @yield('scripts')
 </body>
 
 </html>

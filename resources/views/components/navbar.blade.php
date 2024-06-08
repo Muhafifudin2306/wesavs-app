@@ -18,8 +18,13 @@
             <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="avatar avatar-sm mt-2">
-                    <img src="{{ asset('assets/avatars/avatar-1.jpg') }}" alt="..."
-                        class="avatar-img rounded-circle">
+                    @if (Auth::user()->image == null)
+                        <img id="profile-image" src="{{ asset('assets/avatars/avatar-1.jpg') }}" alt="..."
+                            class="avatar-img rounded-circle">
+                    @else
+                        <img id="profile-image" src="{{ asset('upload/profile' . Auth::user()->image) }}" alt="..."
+                            class="avatar-img rounded-circle">
+                    @endif
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">

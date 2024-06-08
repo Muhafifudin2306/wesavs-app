@@ -23,4 +23,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('akun')->group(function () {
     Route::get('/profil', [App\Http\Controllers\AkunController::class, 'index'])->name('indexProfil');
+    Route::post('/updateData', [App\Http\Controllers\AkunController::class, 'updateData'])->name('updateData');
+    Route::post('/crop-image-upload', [App\Http\Controllers\AkunController::class, 'uploadCropImage'])->name('crop-image-upload');
 });
