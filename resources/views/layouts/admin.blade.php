@@ -9,60 +9,60 @@
     <link rel="icon" href="favicon.ico">
     <title>@yield('title')</title>
     <!-- Simple bar CSS -->
-    <link rel="stylesheet" href="css/simplebar.css">
+    <link rel="stylesheet" href="{{ asset('css/simplebar.css') }}">
     <!-- Fonts CSS -->
     <link
         href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <!-- Icons CSS -->
-    <link rel="stylesheet" href="css/feather.css">
-    <link rel="stylesheet" href="css/select2.css">
-    <link rel="stylesheet" href="css/dropzone.css">
-    <link rel="stylesheet" href="css/uppy.min.css">
-    <link rel="stylesheet" href="css/jquery.steps.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-    <link rel="stylesheet" href="css/quill.snow.css">
+    <link rel="stylesheet" href="{{ asset('css/feather.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/uppy.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jquery.steps.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jquery.timepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/quill.snow.css') }}">
     <!-- Date Range Picker CSS -->
-    <link rel="stylesheet" href="css/daterangepicker.css">
+    <link rel="stylesheet" href="{{ asset('css/daterangepicker.css') }}">
     <!-- App CSS -->
-    <link rel="stylesheet" href="css/app-light.css" id="lightTheme">
-    <link rel="stylesheet" href="css/app-dark.css" id="darkTheme" disabled>
+    <link rel="stylesheet" href="{{ asset('css/app-light.css') }}" id="lightTheme">
+    <link rel="stylesheet" href="{{ asset('css/app-dark.css') }}" id="darkTheme" disabled>
 </head>
 
-<body class="vertical  light  ">
+<body class="vertical  light">
     @yield('content')
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/moment.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/simplebar.min.js"></script>
-    <script src='js/daterangepicker.js'></script>
-    <script src='js/jquery.stickOnScroll.js'></script>
-    <script src="js/tinycolor-min.js"></script>
-    <script src="js/config.js"></script>
-    <script src="js/d3.min.js"></script>
-    <script src="js/topojson.min.js"></script>
-    <script src="js/datamaps.all.min.js"></script>
-    <script src="js/datamaps-zoomto.js"></script>
-    <script src="js/datamaps.custom.js"></script>
-    <script src="js/Chart.min.js"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/popper.min.js') }}""></script>
+    <script src="{{ asset('js/moment.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/simplebar.min.js') }}"></script>
+    <script src="{{ asset('js/daterangepicker.js') }}"></script>
+    <script src="{{ asset('js/jquery.stickOnScroll.js') }}"></script>
+    <script src="{{ asset('js/tinycolor-min.js') }}"></script>
+    <script src="{{ asset('js/config.js') }}"></script>
+    <script src="{{ asset('js/d3.min.js') }}"></script>
+    <script src="{{ asset('js/topojson.min.js') }}"></script>
+    <script src="{{ asset('js/datamaps.all.min.js') }}"></script>
+    <script src="{{ asset('js/datamaps-zoomto.js') }}"></script>
+    <script src="{{ asset('js/datamaps.custom.js') }}"></script>
+    <script src="{{ asset('js/Chart.min.js') }}"></script>
     <script>
         /* defind global options */
         Chart.defaults.global.defaultFontFamily = base.defaultFontFamily;
         Chart.defaults.global.defaultFontColor = colors.mutedColor;
     </script>
-    <script src="js/gauge.min.js"></script>
-    <script src="js/jquery.sparkline.min.js"></script>
-    <script src="js/apexcharts.min.js"></script>
-    <script src="js/apexcharts.custom.js"></script>
-    <script src='js/jquery.mask.min.js'></script>
-    <script src='js/select2.min.js'></script>
-    <script src='js/jquery.steps.min.js'></script>
-    <script src='js/jquery.validate.min.js'></script>
-    <script src='js/jquery.timepicker.js'></script>
-    <script src='js/dropzone.min.js'></script>
-    <script src='js/uppy.min.js'></script>
-    <script src='js/quill.min.js'></script>
+    <script src="{{ asset('js/gauge.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.sparkline.min.js') }}"></script>
+    <script src="{{ asset('js/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('js/apexcharts.custom.js') }}"></script>
+    <script src="{{ asset('js/jquery.mask.min.js') }}""></script>
+    <script src="{{ asset('js/select2.min.js') }}""></script>
+    <script src="{{ asset('js/jquery.steps.min.js') }}""></script>
+    <script src="{{ asset('js/jquery.validate.min.js') }}""></script>
+    <script src="{{ asset('js/jquery.timepicker.js') }}""></script>
+    <script src="{{ asset('js/dropzone.min.js') }}""></script>
+    <script src="{{ asset('js/uppy.min.js') }}""></script>
+    <script src="{{ asset('js/quill.min.js') }}""></script>
     <script>
         $('.select2').select2({
             theme: 'bootstrap4',
@@ -234,7 +234,7 @@
             });
         }
     </script>
-    <script src="js/apps.js"></script>
+    <script src="{{ asset('js/apps.js') }}"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
     <script>
