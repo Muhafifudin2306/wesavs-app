@@ -3,56 +3,144 @@
 @section('title', 'Beranda WESAVS')
 
 @section('content')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+
     <div class="wrapper">
-        <nav class="topnav navbar navbar-light">
-            <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
-                <i class="fe fe-menu navbar-toggler-icon"></i>
-            </button>
-            <ul class="nav">
-                {{-- <li class="nav-item">
-                    <a class="nav-link text-muted my-2" href="#" id="modeSwitcher" data-mode="light">
-                        <i class="fe fe-sun fe-16"></i>
-                    </a>
-                </li> --}}
-                {{-- <li class="nav-item nav-notif">
-                    <a class="nav-link text-muted my-2" href="./#" data-toggle="modal" data-target=".modal-notif">
-                        <span class="fe fe-bell fe-16"></span>
-                        <span class="dot dot-md bg-success"></span>
-                    </a>
-                </li> --}}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink"
-                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="avatar avatar-sm mt-2">
-                            <img src="./assets/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
-                        </span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Profil</a>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
+        <x-navbar></x-navbar>
         <x-sidebar></x-sidebar>
         <main role="main" class="main-content">
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-12">
-                        <div class="row align-items-center mb-2">
-                            <div class="col">
-                                <h2 class="h5 page-title">Welcome, {{ Auth::user()->name }}!</h2>
-                            </div>
-                        </div>
+                        <h2 class="h3 mb-2 mt-4 page-title">Beranda</h2>
+                        <p>Temukan informasi-informasi tentang disorientasi seksual</p>
                     </div> <!-- .col-12 -->
                 </div> <!-- .row -->
+                <div class="row my-4">
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow">
+                            <div class="card-body my-n3">
+                                <div class="text-center py-3 my-2">
+                                    <span class="circle bg-light" style="width:120px;height:120px">
+                                        <i class="fe fe-feather fe-32 text-primary"></i>
+                                    </span>
+                                    <h6 class="my-3">Faktor-Faktor</h6>
+                                </div> <!-- .col -->
+                            </div> <!-- .card-body -->
+                        </div> <!-- .card -->
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow">
+                            <div class="card-body my-n3">
+                                <div class="text-center py-3 my-2">
+                                    <span class="circle bg-light" style="width:120px;height:120px">
+                                        <i class="fe fe-sun fe-32 text-primary"></i>
+                                    </span>
+                                    <h6 class="my-3">Dampak</h6>
+                                </div> <!-- .col -->
+                            </div> <!-- .card-body -->
+                        </div> <!-- .card -->
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow">
+                            <div class="card-body my-n3">
+                                <div class="text-center py-3 my-2">
+                                    <span class="circle bg-light" style="width:120px;height:120px">
+                                        <i class="fe fe-shield-off fe-32 text-primary"></i>
+                                    </span>
+                                    <h6 class="my-3">Mitigasi Pencegahan</h6>
+                                </div> <!-- .col -->
+                            </div> <!-- .card-body -->
+                        </div> <!-- .card -->
+                    </div>
+                </div> <!-- .row-->
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <h2 class="h3 mb-2 mt-4 page-title">Berita</h2>
+                        <p>Selalu terhubung dengan berita terbaru tentang disorientasi seksual</p>
+                    </div> <!-- .col-12 -->
+                </div> <!-- .row -->
+                <section class="splide pb-3 mb-3" role="group" aria-label="Splide Basic HTML Example">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <li class="splide__slide">
+                                <div class="card profile shadow">
+                                    <div class="card-body my-2">
+                                        <div class="row">
+                                            <div class="col-md-3 text-center">
+                                                <a href="#!" class="avatar avatar-xl">
+                                                    <img src="./assets/avatars/face-3.jpg" alt="..."
+                                                        class="avatar-img w-100">
+                                                </a>
+                                            </div>
+                                            <div class="col">
+                                                <h4 class="mb-1 pt-3">Lakukan Ini Untuk Lindungi Anak Dari Disorientasi
+                                                    Seksual </h4>
+                                                <span class="small text-muted mb-0">27-September-2024 - Nanda
+                                                    Kurniawan</span>
+
+                                                <p class="text-muted pt-2"> Lorem ipsum dolor sit amet, consectetur
+                                                    adipiscing elit. Mauris blandit nisl ullamcorper, rutrum metus
+                                                    in, congue lectus. In hac habitasse platea dictumst. Cras urna
+                                                    quam, malesuada vitae risus at, pretium blandit sapien. </p>
+                                            </div>
+                                        </div> <!-- / .row- -->
+                                    </div> <!-- / .card-body - -->
+                                </div> <!-- / .card- -->
+                            </li>
+                            <li class="splide__slide">
+                                <div class="card profile shadow">
+                                    <div class="card-body my-4">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-3 text-center mb-5">
+                                                <a href="#!" class="avatar avatar-xl">
+                                                    <img src="./assets/avatars/face-3.jpg" alt="..."
+                                                        class="avatar-img rounded-circle">
+                                                </a>
+                                            </div>
+                                            <div class="col">
+                                                <h4 class="mb-1">Lakukan Ini Untuk Lindungi Anak Dari Disorientasi
+                                                    Seksual </h4>
+                                                <span class="small text-muted mb-0">27-September-2024 - Nanda
+                                                    Kurniawan</span>
+
+                                                <p class="text-muted py-3"> Lorem ipsum dolor sit amet, consectetur
+                                                    adipiscing elit. Mauris blandit nisl ullamcorper, rutrum metus
+                                                    in, congue lectus. In hac habitasse platea dictumst. Cras urna
+                                                    quam, malesuada vitae risus at, pretium blandit sapien. </p>
+                                            </div>
+                                        </div> <!-- / .row- -->
+                                    </div> <!-- / .card-body - -->
+                                </div> <!-- / .card- -->
+                            </li>
+                            <li class="splide__slide">
+                                <div class="card profile shadow">
+                                    <div class="card-body my-4">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-3 text-center mb-5">
+                                                <a href="#!" class="avatar avatar-xl">
+                                                    <img src="./assets/avatars/face-3.jpg" alt="..."
+                                                        class="avatar-img rounded-circle">
+                                                </a>
+                                            </div>
+                                            <div class="col">
+                                                <h4 class="mb-1">Lakukan Ini Untuk Lindungi Anak Dari Disorientasi
+                                                    Seksual </h4>
+                                                <span class="small text-muted mb-0">27-September-2024 - Nanda
+                                                    Kurniawan</span>
+
+                                                <p class="text-muted py-3"> Lorem ipsum dolor sit amet, consectetur
+                                                    adipiscing elit. Mauris blandit nisl ullamcorper, rutrum metus
+                                                    in, congue lectus. In hac habitasse platea dictumst. Cras urna
+                                                    quam, malesuada vitae risus at, pretium blandit sapien. </p>
+                                            </div>
+                                        </div> <!-- / .row- -->
+                                    </div> <!-- / .card-body - -->
+                                </div> <!-- / .card- -->
+                            </li>
+                        </ul>
+                    </div>
+                </section>
             </div> <!-- .container-fluid -->
             <div class="modal fade modal-notif modal-slide" tabindex="-1" role="dialog"
                 aria-labelledby="defaultModalLabel" aria-hidden="true">
@@ -200,4 +288,12 @@
             </div>
         </main> <!-- main -->
     </div> <!-- .wrapper -->
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script>
+        var splide = new Splide('.splide');
+        splide.mount();
+    </script>
 @endsection

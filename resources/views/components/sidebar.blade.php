@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li class="nav-item w-100">
-                <a class="nav-link" href="{{ route('home') }}">
+                <a class="nav-link" href="{{ route('indexTugas') }}">
                     <i class="fe fe-file fe-16"></i>
                     <span class="ml-3 item-text">Tugas</span>
                 </a>
@@ -45,7 +45,7 @@
         </p>
         <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item w-100">
-                <a class="nav-link" href="{{ route('home') }}">
+                <a class="nav-link" href="{{ route('indexEbook') }}">
                     <i class="fe fe-book fe-16"></i>
                     <span class="ml-3 item-text">E-Book</span>
                 </a>

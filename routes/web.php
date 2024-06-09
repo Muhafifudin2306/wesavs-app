@@ -26,3 +26,11 @@ Route::prefix('akun')->group(function () {
     Route::post('/updateData', [App\Http\Controllers\AkunController::class, 'updateData'])->name('updateData');
     Route::post('/crop-image-upload', [App\Http\Controllers\AkunController::class, 'uploadCropImage'])->name('crop-image-upload');
 });
+
+Route::prefix('tugas')->group(function () {
+    Route::get('/', [App\Http\Controllers\TugasController::class, 'index'])->name('indexTugas');
+});
+
+Route::prefix('ebook')->group(function () {
+    Route::get('/', [App\Http\Controllers\EbookController::class, 'index'])->name('indexEbook');
+});
