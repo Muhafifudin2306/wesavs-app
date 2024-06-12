@@ -20,6 +20,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.fe-64 {
+  font-size: 64px; }
+
 .fe-32 {
   font-size: 32px; }
 

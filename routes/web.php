@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,4 +34,12 @@ Route::prefix('tugas')->group(function () {
 
 Route::prefix('ebook')->group(function () {
     Route::get('/', [App\Http\Controllers\EbookController::class, 'index'])->name('indexEbook');
+});
+
+Route::prefix('grup')->group(function () {
+    Route::get('/', [App\Http\Controllers\GrupController::class, 'index'])->name('indexGrup');
+});
+
+Route::prefix('point')->group(function () {
+    Route::get('/', [App\Http\Controllers\PointController::class, 'index'])->name('indexPoint');
 });

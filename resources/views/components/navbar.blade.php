@@ -28,7 +28,7 @@
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Profil</a>
+                <a class="dropdown-item" href="{{ route('indexProfil') }}">Profil</a>
                 <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
