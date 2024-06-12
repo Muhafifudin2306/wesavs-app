@@ -122,9 +122,11 @@
                                         <i class="fe fe-map-pin f-12"></i> Nasional, Indonesia
                                     </div>
                                     <div class="col-md-2">
-                                        <button class="btn btn-success"> <i class="fe fe-message-circle fe-12"></i>
-                                            Join
-                                            Diskusi</button>
+                                        <a href="{{ route('indexChat') }}">
+                                            <button class="btn btn-success"> <i class="fe fe-message-circle fe-12"></i>
+                                                Join
+                                                Diskusi</button>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="row py-3">
@@ -222,9 +224,12 @@
                                     </div>
                                     <div class="col-md-2">
                                         <div class="mb-2">
-                                            <button class="btn btn-success"> <i class="fe fe-message-circle fe-12"></i>
-                                                Join
-                                                Diskusi</button>
+                                            <a href="{{ route('indexChat') }}">
+                                                <button class="btn btn-success"> <i
+                                                        class="fe fe-message-circle fe-12"></i>
+                                                    Join
+                                                    Diskusi</button>
+                                            </a>
                                         </div>
                                         <div class="mb-2">
                                             <button class="btn btn-danger"> <i class="fe fe-log-out fe-12"></i> Keluar

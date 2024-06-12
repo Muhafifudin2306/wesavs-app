@@ -10,4 +10,9 @@ class GrupController extends Controller
     {
         return view('grup.read');
     }
+
+    public function indexChat()
+    {
+        return view('grup.chat.read');
+    }
 }
