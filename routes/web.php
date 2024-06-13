@@ -39,6 +39,7 @@ Route::prefix('ebook')->group(function () {
 Route::prefix('grup')->group(function () {
     Route::get('/', [App\Http\Controllers\GrupController::class, 'index'])->name('indexGrup');
     Route::get('/chat', [App\Http\Controllers\GrupController::class, 'indexChat'])->name('indexChat');
+    Route::post('/send-message', [App\Http\Controllers\GrupController::class, 'sendMessage']);
 });
 
 Route::prefix('point')->group(function () {

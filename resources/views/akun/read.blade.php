@@ -38,10 +38,10 @@
                                 <div class="avatar">
                                     @if (Auth::user()->image == null)
                                         <img id="profile-image" src="{{ asset('assets/avatars/avatar-1.jpg') }}"
-                                            alt="..." class="avatar-img rounded-circle">
+                                            alt="..." class="avatar-img rounded-circle w-100">
                                     @else
                                         <img id="profile-image" src="{{ asset('upload/profile' . $userId->image) }}"
-                                            alt="..." class="avatar-img rounded-circle">
+                                            alt="..." class="avatar-img rounded-circle w-100">
                                     @endif
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
                                             </span>
                                         </div> <!-- .col -->
                                         <div class="col-9">
-                                            <a href="#">
+                                            <a href="{{ url('point') }}">
                                                 <h3 class="h5 mt-4 mb-1">My Points</h3>
                                             </a>
                                             <p class="text-muted">Lihat poin saya dan tukarkan dengan hadiah menarik
@@ -89,7 +89,8 @@
                                     </div> <!-- .row -->
                                 </div> <!-- .card-body -->
                                 <div class="card-footer">
-                                    <a href="" class="d-flex justify-content-between text-muted"><span>Jelajahi
+                                    <a href="{{ url('point') }}"
+                                        class="d-flex justify-content-between text-muted"><span>Jelajahi
                                             Point My Points</span><i class="fe fe-chevron-right"></i></a>
                                 </div> <!-- .card-footer -->
                             </div> <!-- .card -->
@@ -104,7 +105,7 @@
                                             </span>
                                         </div> <!-- .col -->
                                         <div class="col">
-                                            <a href="#">
+                                            <a href="{{ url('/grup') }}">
                                                 <h3 class="h5 mt-4 mb-1">Grup</h3>
                                             </a>
                                             <p class="text-muted">Jelajahi berbagai grup dan komunitas untuk memperluas
@@ -114,7 +115,8 @@
                                     </div> <!-- .row -->
                                 </div> <!-- .card-body -->
                                 <div class="card-footer">
-                                    <a href="" class="d-flex justify-content-between text-muted"><span>Jelajahi
+                                    <a href="{{ url('/grup') }}"
+                                        class="d-flex justify-content-between text-muted"><span>Jelajahi
                                             Grup</span><i class="fe fe-chevron-right"></i></a>
                                 </div> <!-- .card-footer -->
                             </div> <!-- .card -->
@@ -129,7 +131,7 @@
                                             </span>
                                         </div> <!-- .col -->
                                         <div class="col">
-                                            <a href="#">
+                                            <a href="{{ url('/tugas') }}">
                                                 <h3 class="h5 mt-4 mb-1">Tugas</h3>
                                             </a>
                                             <p class="text-muted">Jelajahi tugas dan dapatkan poin bonus dari setiap
@@ -139,7 +141,8 @@
                                     </div> <!-- .row -->
                                 </div> <!-- .card-body -->
                                 <div class="card-footer">
-                                    <a href="" class="d-flex justify-content-between text-muted"><span>Jelajahi
+                                    <a href="{{ url('/tugas') }}"
+                                        class="d-flex justify-content-between text-muted"><span>Jelajahi
                                             Tugas</span><i class="fe fe-chevron-right"></i></a>
                                 </div> <!-- .card-footer -->
                             </div> <!-- .card -->
@@ -199,7 +202,7 @@
                                 <div class="form-group">
                                     <label for="number">Nomor Telpon</label>
                                     <input type="text" class="form-control" name="number" id="number"
-                                        value="{{ $userId->number }}" required>
+                                        value="{{ $userId->number }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Alamat Email</label>
