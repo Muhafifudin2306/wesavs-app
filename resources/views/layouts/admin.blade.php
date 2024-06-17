@@ -29,6 +29,11 @@
     <link rel="stylesheet" href="{{ asset('css/app-light.css') }}" id="lightTheme">
     <link rel="stylesheet" href="{{ asset('css/app-dark.css') }}" id="darkTheme" disabled>
 </head>
+<style>
+    .cursor-pointer:hover {
+        cursor: pointer;
+    }
+</style>
 
 <body class="vertical  light">
     @yield('content')

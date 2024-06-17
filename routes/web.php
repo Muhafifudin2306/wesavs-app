@@ -45,3 +45,8 @@ Route::prefix('grup')->group(function () {
 Route::prefix('point')->group(function () {
     Route::get('/', [App\Http\Controllers\PointController::class, 'index'])->name('indexPoint');
 });
+
+Route::prefix('user')->group(function () {
+    Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('indexUser');
+    Route::delete('/delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('deleteUser');
+});
