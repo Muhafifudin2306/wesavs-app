@@ -16,6 +16,12 @@
                     <span class="ml-3 item-text">Beranda</span>
                 </a>
             </li>
+            <li class="nav-item w-100">
+                <a class="nav-link" href="{{ route('indexSettingHome') }}">
+                    <i class="fe fe-home fe-16"></i>
+                    <span class="ml-3 item-text">Pengaturan Beranda</span>
+                </a>
+            </li>
         </ul>
         <p class="text-muted nav-heading mt-2 mb-1">
             <span>Sosial</span>

@@ -93,7 +93,8 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form class="update-form" data-action="{{ url('/akun/updateData/') }}" method="POST">
+                                    <form class="update-form" data-action="{{ url('/user/updateData/' . $item->id) }}"
+                                        method="POST">
                                         @csrf
                                         <div class="modal-body">
                                             <div class="form-group">

@@ -63,81 +63,31 @@
                 <section class="splide pb-3 mb-3" role="group" aria-label="Splide Basic HTML Example">
                     <div class="splide__track">
                         <ul class="splide__list">
-                            <li class="splide__slide">
-                                <div class="card profile shadow">
-                                    <div class="card-body my-2">
-                                        <div class="row">
-                                            <div class="col-md-3 text-center">
-                                                <a href="#!" class="avatar avatar-xl">
-                                                    <img src="./assets/avatars/face-3.jpg" alt="..."
-                                                        class="avatar-img w-100">
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <h4 class="mb-1 pt-3">Lakukan Ini Untuk Lindungi Anak Dari Disorientasi
-                                                    Seksual </h4>
-                                                <span class="small text-muted mb-0">27-September-2024 - Nanda
-                                                    Kurniawan</span>
+                            @foreach ($blogs as $item)
+                                <li class="splide__slide">
+                                    <div class="card profile shadow">
+                                        <div class="card-body my-2">
+                                            <div class="row">
+                                                <div class="col-md-3 text-center">
+                                                    <a href="#!" class="avatar avatar-xl">
+                                                        <img src="{{ Storage::url($item->cover) }}" alt="..."
+                                                            class="avatar-img w-100 object-fit-fill" height="280">
+                                                    </a>
+                                                </div>
+                                                <div class="col">
+                                                    <h4 class="mb-1 pt-3">{{ $item->title }}</h4>
+                                                    <span
+                                                        class="small text-muted mb-0">{{ $item->updated_at->format('F d, Y') }}
+                                                        -
+                                                        {{ $item->user->name }}</span>
 
-                                                <p class="text-muted pt-2"> Lorem ipsum dolor sit amet, consectetur
-                                                    adipiscing elit. Mauris blandit nisl ullamcorper, rutrum metus
-                                                    in, congue lectus. In hac habitasse platea dictumst. Cras urna
-                                                    quam, malesuada vitae risus at, pretium blandit sapien. </p>
-                                            </div>
-                                        </div> <!-- / .row- -->
-                                    </div> <!-- / .card-body - -->
-                                </div> <!-- / .card- -->
-                            </li>
-                            <li class="splide__slide">
-                                <div class="card profile shadow">
-                                    <div class="card-body my-4">
-                                        <div class="row align-items-center">
-                                            <div class="col-md-3 text-center mb-5">
-                                                <a href="#!" class="avatar avatar-xl">
-                                                    <img src="./assets/avatars/face-3.jpg" alt="..."
-                                                        class="avatar-img rounded-circle">
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <h4 class="mb-1">Lakukan Ini Untuk Lindungi Anak Dari Disorientasi
-                                                    Seksual </h4>
-                                                <span class="small text-muted mb-0">27-September-2024 - Nanda
-                                                    Kurniawan</span>
-
-                                                <p class="text-muted py-3"> Lorem ipsum dolor sit amet, consectetur
-                                                    adipiscing elit. Mauris blandit nisl ullamcorper, rutrum metus
-                                                    in, congue lectus. In hac habitasse platea dictumst. Cras urna
-                                                    quam, malesuada vitae risus at, pretium blandit sapien. </p>
-                                            </div>
-                                        </div> <!-- / .row- -->
-                                    </div> <!-- / .card-body - -->
-                                </div> <!-- / .card- -->
-                            </li>
-                            <li class="splide__slide">
-                                <div class="card profile shadow">
-                                    <div class="card-body my-4">
-                                        <div class="row align-items-center">
-                                            <div class="col-md-3 text-center mb-5">
-                                                <a href="#!" class="avatar avatar-xl">
-                                                    <img src="./assets/avatars/face-3.jpg" alt="..."
-                                                        class="avatar-img rounded-circle">
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <h4 class="mb-1">Lakukan Ini Untuk Lindungi Anak Dari Disorientasi
-                                                    Seksual </h4>
-                                                <span class="small text-muted mb-0">27-September-2024 - Nanda
-                                                    Kurniawan</span>
-
-                                                <p class="text-muted py-3"> Lorem ipsum dolor sit amet, consectetur
-                                                    adipiscing elit. Mauris blandit nisl ullamcorper, rutrum metus
-                                                    in, congue lectus. In hac habitasse platea dictumst. Cras urna
-                                                    quam, malesuada vitae risus at, pretium blandit sapien. </p>
-                                            </div>
-                                        </div> <!-- / .row- -->
-                                    </div> <!-- / .card-body - -->
-                                </div> <!-- / .card- -->
-                            </li>
+                                                    <p class="text-muted pt-2"> {{ $item->content }} </p>
+                                                </div>
+                                            </div> <!-- / .row- -->
+                                        </div> <!-- / .card-body - -->
+                                    </div> <!-- / .card- -->
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </section>

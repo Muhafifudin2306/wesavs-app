@@ -22,6 +22,14 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::prefix('setting')->group(function () {
+    Route::prefix('home')->group(function () {
+        Route::get('/', [App\Http\Controllers\HomeController::class, 'settingHome'])->name('indexSettingHome');
+        Route::post('/storeBlog', [App\Http\Controllers\HomeController::class, 'storeBlog'])->name('storeBlog');
+        Route::delete('/delete/{id}', [App\Http\Controllers\HomeController::class, 'destroy'])->name('deleteBlog');
+    });
+});
+
 Route::prefix('akun')->group(function () {
     Route::get('/profil', [App\Http\Controllers\AkunController::class, 'index'])->name('indexProfil');
     Route::post('/updateData', [App\Http\Controllers\AkunController::class, 'updateData'])->name('updateData');
@@ -49,4 +57,5 @@ Route::prefix('point')->group(function () {
 Route::prefix('user')->group(function () {
     Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('indexUser');
     Route::delete('/delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('deleteUser');
+    Route::post('/updateData/{id}', [App\Http\Controllers\UserController::class, 'updateData'])->name('updateData');
 });
