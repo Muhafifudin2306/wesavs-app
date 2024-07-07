@@ -63,4 +63,24 @@ class HomeController extends Controller
 
         return response()->json(['success' => 'Delete Blog Successfully']);
     }
+
+    public function updateBlog(Request $request, $id)
+    {
+        $blog = Blog::find($id);
+
+        $blog->update([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'content' => $request->content,
+            'created_by' => Auth::user()->id
+        ]);
+        $coverPath = null;
+        if ($request->hasFile('cover')) {
+            $coverPath = $request->file('cover')->store('covers', 'public');
+            $blog->update([
+                'cover' => $coverPath,
+            ]);
+        };
+        return response()->json(['message' => 'Update Data Berhasil!'], 201);
+    }
 }

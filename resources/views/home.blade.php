@@ -68,12 +68,12 @@
                                     <div class="card profile shadow">
                                         <div class="card-body my-2">
                                             <div class="row">
-                                                <div class="col-md-3 text-center">
-                                                    <a href="#!" class="avatar avatar-xl">
-                                                        <img src="{{ Storage::url($item->cover) }}" alt="..."
-                                                            class="avatar-img w-100 object-fit-fill" height="280">
-                                                    </a>
+                                                <div class="col-md-4 text-center">
+                                                    <img src="{{ Storage::url($item->cover) }}" height="280"
+                                                        alt="..." class="w-100" style="object-fit: cover"
+                                                        data-toggle="modal" data-target="#imageModal-{{ $item->id }}">
                                                 </div>
+
                                                 <div class="col">
                                                     <h4 class="mb-1 pt-3">{{ $item->title }}</h4>
                                                     <span
@@ -81,7 +81,7 @@
                                                         -
                                                         {{ $item->user->name }}</span>
 
-                                                    <p class="text-muted pt-2"> {{ $item->content }} </p>
+                                                    <p class="pt-2"> {!! $item->content !!} </p>
                                                 </div>
                                             </div> <!-- / .row- -->
                                         </div> <!-- / .card-body - -->
@@ -238,6 +238,17 @@
             </div>
         </main> <!-- main -->
     </div> <!-- .wrapper -->
+    @foreach ($blogs as $item)
+        <!-- Modal -->
+        <div class="modal fade" id="imageModal-{{ $item->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="imageModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <img src="{{ Storage::url($item->cover) }}" alt="..." class="w-100">
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection
 
 @section('scripts')

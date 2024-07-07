@@ -4,6 +4,7 @@
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 
     <div class="wrapper">
         <x-navbar></x-navbar>
@@ -31,7 +32,6 @@
                                         <tr>
                                             <th><strong>No</strong></th>
                                             <th><strong>Cover</strong></th>
-                                            <th><strong>Judul</strong></th>
                                             <th><strong>Konten</strong></th>
                                             <th><strong>Dibuat Pada</strong></th>
                                             <th><strong>Aksi</strong></th>
@@ -50,8 +50,11 @@
                                                             class="avatar-img rounded" width="200">
                                                     </div>
                                                 </th>
-                                                <th>{{ $item->title }}</th>
-                                                <th>{{ $item->content }}</th>
+                                                <th>
+                                                    <p class="font-weight-bold">{{ $item->title }}</p>
+                                                    <hr>
+                                                    {!! $item->content !!}
+                                                </th>
                                                 <td>
                                                     {{ $item->updated_at->format('d F Y') }}
                                                 </td>
@@ -99,7 +102,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="content">Konten Blog</label>
-                                    <textarea name="content" class="form-control" id="content" cols="30" rows="10"
+                                    <textarea id="content-add" name="content" class="form-control" id="content" cols="30" rows="10"
                                         placeholder="Masukkan konten blog" required></textarea>
                                 </div>
                             </div>
@@ -122,31 +125,34 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form id="blogForm" enctype="multipart/form-data">
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <img src="{{ Storage::url($item->cover) }}" alt="..."
-                                            class="avatar-img rounded w-100">
-                                        <label for="name">Cover</label>
-                                        <input type="file" id="file" class="form-control" name="cover"
-                                            required>
+                            <form class="update-form" data-action="{{ url('/setting/home/update/' . $item->id) }}"
+                                method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <form id="blogForm">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <img src="{{ Storage::url($item->cover) }}" alt="..."
+                                                class="avatar-img rounded w-100">
+                                            <label for="name">Cover</label>
+                                            <input type="file" id="file" class="form-control" name="cover">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="title">Judul Blog</label>
+                                            <input type="text" value="{{ $item->title }}" class="form-control"
+                                                placeholder="Masukkan Judul Blog" name="title" id="title" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="content">Konten Blog</label>
+                                            <textarea id="content-edit" name="content" class="form-control" cols="30" rows="10"
+                                                placeholder="Masukkan konten blog" required>{{ $item->content }}</textarea>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="title">Judul Blog</label>
-                                        <input type="text" value="{{ $item->title }}" class="form-control"
-                                            placeholder="Masukkan Judul Blog" name="title" id="title" required>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Batal</button>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="content">Konten Blog</label>
-                                        <textarea name="content" class="form-control" cols="30" rows="10" placeholder="Masukkan konten blog"
-                                            required>{{ $item->content }}</textarea>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                </div>
-                            </form>
+                                </form>
                         </div>
                     </div>
                 </div>
@@ -158,6 +164,14 @@
 @section('scripts')
     <script src='{{ asset('js/jquery.dataTables.min.js') }}'></script>
     <script src='{{ asset('js/dataTables.bootstrap4.min.js') }}'></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#content-add').summernote();
+            $('#content-edit').summernote();
+        });
+    </script>
+
     <script>
         const deleteCredit = document.querySelectorAll('.blog-delete');
 
@@ -213,6 +227,38 @@
                     .catch(error => {
                         Notiflix.Notify.failure('Error:', error);
                     });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const updateForms = document.querySelectorAll('.update-form');
+
+            updateForms.forEach(form => {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    const formData = new FormData(form);
+
+                    fetch(form.getAttribute('data-action'), {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            Notiflix.Notify.success("Data berhasil diperbarui!", {
+                                timeout: 3000
+                            });
+
+                            location.reload();
+                        })
+                        .catch(error => {
+                            Notiflix.Notify.failure('Error:', error);
+                        });
+                });
             });
         });
     </script>
