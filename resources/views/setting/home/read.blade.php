@@ -128,31 +128,29 @@
                             <form class="update-form" data-action="{{ url('/setting/home/update/' . $item->id) }}"
                                 method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <form id="blogForm">
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <img src="{{ Storage::url($item->cover) }}" alt="..."
-                                                class="avatar-img rounded w-100">
-                                            <label for="name">Cover</label>
-                                            <input type="file" id="file" class="form-control" name="cover">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="title">Judul Blog</label>
-                                            <input type="text" value="{{ $item->title }}" class="form-control"
-                                                placeholder="Masukkan Judul Blog" name="title" id="title" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="content">Konten Blog</label>
-                                            <textarea id="content-edit" name="content" class="form-control" cols="30" rows="10"
-                                                placeholder="Masukkan konten blog" required>{{ $item->content }}</textarea>
-                                        </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <img src="{{ Storage::url($item->cover) }}" alt="..."
+                                            class="avatar-img rounded w-100">
+                                        <label for="name">Cover</label>
+                                        <input type="file" id="file" class="form-control" name="cover">
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Batal</button>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <div class="form-group">
+                                        <label for="title">Judul Blog</label>
+                                        <input type="text" value="{{ $item->title }}" class="form-control"
+                                            placeholder="Masukkan Judul Blog" name="title" id="title" required>
                                     </div>
-                                </form>
+                                    <div class="form-group">
+                                        <label for="content">Konten Blog</label>
+                                        <textarea id="content-edit" name="content" class="form-control" cols="30" rows="10"
+                                            placeholder="Masukkan konten blog" required>{{ $item->content }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

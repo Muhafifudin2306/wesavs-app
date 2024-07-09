@@ -58,6 +58,17 @@
             </li>
         </ul>
         <p class="text-muted nav-heading mt-2 mb-1">
+            <span>Pengaturan Edukasi</span>
+        </p>
+        <ul class="navbar-nav flex-fill w-100 mb-2">
+            <li class="nav-item w-100">
+                <a class="nav-link" href="{{ route('indexSettingEbook') }}">
+                    <i class="fe fe-user fe-16"></i>
+                    <span class="ml-3 item-text">Manajemen E-Book</span>
+                </a>
+            </li>
+        </ul>
+        <p class="text-muted nav-heading mt-2 mb-1">
             <span>Akun</span>
         </p>
         <ul class="navbar-nav flex-fill w-100 mb-2">

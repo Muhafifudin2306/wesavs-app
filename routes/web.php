@@ -43,6 +43,10 @@ Route::prefix('tugas')->group(function () {
 
 Route::prefix('ebook')->group(function () {
     Route::get('/', [App\Http\Controllers\EbookController::class, 'index'])->name('indexEbook');
+    Route::get('/setting', [App\Http\Controllers\EbookController::class, 'settingEbook'])->name('indexSettingEbook');
+    Route::post('/storeEbook', [App\Http\Controllers\EbookController::class, 'storeEbook'])->name('storeEbook');
+    Route::post('/update/{id}', [App\Http\Controllers\EbookController::class, 'updateEbook'])->name('updateEbook');
+    Route::delete('/delete/{id}', [App\Http\Controllers\EbookController::class, 'destroy'])->name('deleteEbook');
 });
 
 Route::prefix('grup')->group(function () {

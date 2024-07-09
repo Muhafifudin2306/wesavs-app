@@ -14,6 +14,16 @@
                         <p>Materi pilihan membantu pengguna memahami disorientasi seksual</p>
                     </div>
                 </div> <!-- /.col-12 -->
+                <div class="row my-4">
+                    <!-- Small table -->
+                    <div class="col-md-12">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                {!! $ebook->content !!}
+                            </div>
+                        </div>
+                    </div> <!-- simple table -->
+                </div> <!-- end section -->
             </div> <!-- .row -->
         </main>
     </div> <!-- .container-fluid -->
