@@ -18,7 +18,7 @@
                 </div> <!-- .row -->
                 <div class="row my-4">
                     <div class="col-md-4">
-                        <div class="card mb-4 shadow">
+                        <div class="card mb-4 shadow cursor-pointer" data-toggle="modal" data-target="#factorModal">
                             <div class="card-body my-n3">
                                 <div class="text-center py-3 my-2">
                                     <span class="circle bg-light" style="width:120px;height:120px">
@@ -249,6 +249,24 @@
             </div>
         </div>
     @endforeach
+    <div class="modal fade" id="factorModal" tabindex="-1" aria-labelledby="ebookModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ebookModalLabel">Faktor-Faktor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {!! $factor->content !!}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')

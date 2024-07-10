@@ -29,11 +29,17 @@ Route::prefix('setting')->group(function () {
         Route::delete('/delete/{id}', [App\Http\Controllers\HomeController::class, 'destroy'])->name('deleteBlog');
         Route::post('/update/{id}', [App\Http\Controllers\HomeController::class, 'updateBlog'])->name('updateBlog');
     });
+    Route::prefix('factor')->group(function () {
+        Route::get('/', [App\Http\Controllers\HomeController::class, 'settingFactor'])->name('indexFactor');
+        Route::post('/storeFactor', [App\Http\Controllers\HomeController::class, 'storeFactor'])->name('storeFactor');
+        Route::post('/update/{id}', [App\Http\Controllers\HomeController::class, 'updateFactor'])->name('updateFactor');
+        Route::delete('/delete/{id}', [App\Http\Controllers\HomeController::class, 'destroyFactor'])->name('deleteFactor');
+    });
 });
 
 Route::prefix('akun')->group(function () {
     Route::get('/profil', [App\Http\Controllers\AkunController::class, 'index'])->name('indexProfil');
-    Route::post('/updateData', [App\Http\Controllers\AkunController::class, 'updateData'])->name('updateData');
+    Route::post('/updateData', [App\Http\Controllers\AkunController::class, 'updateData'])->name('updateAkun');
     Route::post('/crop-image-upload', [App\Http\Controllers\AkunController::class, 'uploadCropImage'])->name('crop-image-upload');
 });
 

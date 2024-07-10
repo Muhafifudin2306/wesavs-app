@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Factor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -27,7 +28,8 @@ class HomeController extends Controller
     public function index()
     {
         $blogs = Blog::latest()->get();
-        return view('home', compact('blogs'));
+        $factor = Factor::latest()->first();
+        return view('home', compact('blogs', 'factor'));
     }
 
     public function settingHome()
@@ -82,5 +84,39 @@ class HomeController extends Controller
             ]);
         };
         return response()->json(['message' => 'Update Data Berhasil!'], 201);
+    }
+
+    public function settingFactor()
+    {
+        $factor = Factor::latest()->first();
+        return view('setting.Factor.read', compact('factor'));
+    }
+
+    public function storeFactor(Request $request)
+    {
+        Factor::create([
+            'content' => $request->content
+        ]);
+
+        return response()->json(['message' => 'Store Data Berhasil!'], 201);
+    }
+
+    public function updateFactor(Request $request, $id)
+    {
+        $factor = Factor::find($id);
+        $factor->update([
+            'content' => $request->content
+        ]);
+
+        return response()->json(['message' => 'Update Data Berhasil!'], 201);
+    }
+
+    public function destroyFactor($id)
+    {
+        $factor = Factor::find($id);
+
+        $factor->delete();
+
+        return response()->json(['success' => 'Delete Factor Successfully']);
     }
 }

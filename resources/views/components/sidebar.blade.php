@@ -18,8 +18,26 @@
             </li>
             <li class="nav-item w-100">
                 <a class="nav-link" href="{{ route('indexSettingHome') }}">
-                    <i class="fe fe-home fe-16"></i>
-                    <span class="ml-3 item-text">Pengaturan Beranda</span>
+                    <i class="fe fe-archive fe-16"></i>
+                    <span class="ml-3 item-text">Manajemen Berita</span>
+                </a>
+            </li>
+            <li class="nav-item w-100">
+                <a class="nav-link" href="{{ route('indexFactor') }}">
+                    <i class="fe fe-feather fe-16"></i>
+                    <span class="ml-3 item-text">Manajemen Faktor</span>
+                </a>
+            </li>
+            <li class="nav-item w-100">
+                <a class="nav-link" href="{{ route('indexSettingHome') }}">
+                    <i class="fe fe-sun fe-16"></i>
+                    <span class="ml-3 item-text">Manajemen Dampak</span>
+                </a>
+            </li>
+            <li class="nav-item w-100">
+                <a class="nav-link" href="{{ route('indexSettingHome') }}">
+                    <i class="fe fe-shield-off fe-16"></i>
+                    <span class="ml-3 item-text">Manajemen Mitigasi</span>
                 </a>
             </li>
         </ul>
