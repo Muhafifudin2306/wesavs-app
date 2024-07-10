@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Factor;
+use App\Models\Impact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -29,7 +30,8 @@ class HomeController extends Controller
     {
         $blogs = Blog::latest()->get();
         $factor = Factor::latest()->first();
-        return view('home', compact('blogs', 'factor'));
+        $impact = Impact::latest()->first();
+        return view('home', compact('blogs', 'factor', 'impact'));
     }
 
     public function settingHome()
@@ -118,5 +120,39 @@ class HomeController extends Controller
         $factor->delete();
 
         return response()->json(['success' => 'Delete Factor Successfully']);
+    }
+
+    public function settingImpact()
+    {
+        $impact = Impact::latest()->first();
+        return view('setting.impact.read', compact('impact'));
+    }
+
+    public function storeImpact(Request $request)
+    {
+        Impact::create([
+            'content' => $request->content
+        ]);
+
+        return response()->json(['message' => 'Store Data Berhasil!'], 201);
+    }
+
+    public function updateImpact(Request $request, $id)
+    {
+        $impact = Impact::find($id);
+        $impact->update([
+            'content' => $request->content
+        ]);
+
+        return response()->json(['message' => 'Update Data Berhasil!'], 201);
+    }
+
+    public function destroyImpact($id)
+    {
+        $impact = Impact::find($id);
+
+        $impact->delete();
+
+        return response()->json(['success' => 'Delete Impact Successfully']);
     }
 }

@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li class="nav-item w-100">
-                <a class="nav-link" href="{{ route('indexSettingHome') }}">
+                <a class="nav-link" href="{{ route('indexImpact') }}">
                     <i class="fe fe-sun fe-16"></i>
                     <span class="ml-3 item-text">Manajemen Dampak</span>
                 </a>

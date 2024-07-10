@@ -30,7 +30,7 @@
                         </div> <!-- .card -->
                     </div>
                     <div class="col-md-4">
-                        <div class="card mb-4 shadow">
+                        <div class="card mb-4 shadow cursor-pointer" data-toggle="modal" data-target="#impactModal">
                             <div class="card-body my-n3">
                                 <div class="text-center py-3 my-2">
                                     <span class="circle bg-light" style="width:120px;height:120px">
@@ -262,7 +262,25 @@
                     {!! $factor->content !!}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="impactModal" tabindex="-1" aria-labelledby="ebookModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ebookModalLabel">Dampak</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {!! $impact->content !!}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                 </div>
             </div>
         </div>

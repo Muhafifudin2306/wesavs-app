@@ -35,6 +35,12 @@ Route::prefix('setting')->group(function () {
         Route::post('/update/{id}', [App\Http\Controllers\HomeController::class, 'updateFactor'])->name('updateFactor');
         Route::delete('/delete/{id}', [App\Http\Controllers\HomeController::class, 'destroyFactor'])->name('deleteFactor');
     });
+    Route::prefix('impact')->group(function () {
+        Route::get('/', [App\Http\Controllers\HomeController::class, 'settingImpact'])->name('indexImpact');
+        Route::post('/storeImpact', [App\Http\Controllers\HomeController::class, 'storeImpact'])->name('storeImpact');
+        Route::post('/update/{id}', [App\Http\Controllers\HomeController::class, 'updateImpact'])->name('updateImpact');
+        Route::delete('/delete/{id}', [App\Http\Controllers\HomeController::class, 'destroyImpact'])->name('deleteImpact');
+    });
 });
 
 Route::prefix('akun')->group(function () {
