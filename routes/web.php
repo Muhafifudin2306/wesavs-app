@@ -41,6 +41,12 @@ Route::prefix('setting')->group(function () {
         Route::post('/update/{id}', [App\Http\Controllers\HomeController::class, 'updateImpact'])->name('updateImpact');
         Route::delete('/delete/{id}', [App\Http\Controllers\HomeController::class, 'destroyImpact'])->name('deleteImpact');
     });
+    Route::prefix('mitigation')->group(function () {
+        Route::get('/', [App\Http\Controllers\HomeController::class, 'settingMitigation'])->name('indexMitigation');
+        Route::post('/storeMitigation', [App\Http\Controllers\HomeController::class, 'storeMitigation'])->name('storeMitigation');
+        Route::post('/update/{id}', [App\Http\Controllers\HomeController::class, 'updateMitigation'])->name('updateMitigation');
+        Route::delete('/delete/{id}', [App\Http\Controllers\HomeController::class, 'destroyMitigation'])->name('deleteMitigation');
+    });
 });
 
 Route::prefix('akun')->group(function () {

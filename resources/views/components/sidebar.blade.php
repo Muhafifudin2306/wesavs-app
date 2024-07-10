@@ -35,7 +35,7 @@
                 </a>
             </li>
             <li class="nav-item w-100">
-                <a class="nav-link" href="{{ route('indexSettingHome') }}">
+                <a class="nav-link" href="{{ route('indexMitigation') }}">
                     <i class="fe fe-shield-off fe-16"></i>
                     <span class="ml-3 item-text">Manajemen Mitigasi</span>
                 </a>

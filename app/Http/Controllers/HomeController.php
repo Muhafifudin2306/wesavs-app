@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Factor;
 use App\Models\Impact;
+use App\Models\Mitigation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -31,7 +32,8 @@ class HomeController extends Controller
         $blogs = Blog::latest()->get();
         $factor = Factor::latest()->first();
         $impact = Impact::latest()->first();
-        return view('home', compact('blogs', 'factor', 'impact'));
+        $mitigation = Mitigation::latest()->first();
+        return view('home', compact('blogs', 'factor', 'impact','mitigation'));
     }
 
     public function settingHome()
@@ -154,5 +156,39 @@ class HomeController extends Controller
         $impact->delete();
 
         return response()->json(['success' => 'Delete Impact Successfully']);
+    }
+    
+    public function settingMitigation()
+    {
+        $mitigation = Mitigation::latest()->first();
+        return view('setting.mitigation.read', compact('mitigation'));
+    }
+
+    public function storeMitigation(Request $request)
+    {
+        Mitigation::create([
+            'content' => $request->content
+        ]);
+
+        return response()->json(['message' => 'Store Data Berhasil!'], 201);
+    }
+
+    public function updateMitigation(Request $request, $id)
+    {
+        $mitigation = Mitigation::find($id);
+        $mitigation->update([
+            'content' => $request->content
+        ]);
+
+        return response()->json(['message' => 'Update Data Berhasil!'], 201);
+    }
+
+    public function destroyMitigation($id)
+    {
+        $mitigation = Mitigation::find($id);
+
+        $mitigation->delete();
+
+        return response()->json(['success' => 'Delete Mitigation Successfully']);
     }
 }
