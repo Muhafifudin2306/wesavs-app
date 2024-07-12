@@ -47,6 +47,10 @@ Route::prefix('setting')->group(function () {
         Route::post('/update/{id}', [App\Http\Controllers\HomeController::class, 'updateMitigation'])->name('updateMitigation');
         Route::delete('/delete/{id}', [App\Http\Controllers\HomeController::class, 'destroyMitigation'])->name('deleteMitigation');
     });
+    Route::prefix('tugas')->group(function () {
+        Route::get('/', [App\Http\Controllers\TugasController::class, 'indexSetting'])->name('indexSettingTugas');
+        Route::post('/updateData/{id}', [App\Http\Controllers\TugasController::class, 'updateData'])->name('updateSettingTugas');
+    });
 });
 
 Route::prefix('akun')->group(function () {

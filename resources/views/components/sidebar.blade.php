@@ -58,6 +58,12 @@
                 </a>
             </li>
             <li class="nav-item w-100">
+                <a class="nav-link" href="{{ route('indexSettingTugas') }}">
+                    <i class="fe fe-file fe-16"></i>
+                    <span class="ml-3 item-text">Manajemen Tugas</span>
+                </a>
+            </li>
+            <li class="nav-item w-100">
                 <a class="nav-link" href="{{ route('indexPoint') }}">
                     <i class="fe fe-grid fe-16"></i>
                     <span class="ml-3 item-text">My Point</span>
