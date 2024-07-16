@@ -129,70 +129,41 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="row py-3">
-                                    <div class="col-md-2">
-                                        <img src="{{ asset('image/grup/grup-4.png') }}" class="w-100 rounded-circle"
-                                            alt="">
-                                    </div>
-                                    <div class="col-md-2">
-                                        <h5 class="h6 card-title mb-1">Cegah LGBT Cilacap</h5>
-                                        <div class="card-text mb-1">
-                                            <span class="badge text-muted"><i class="fe fe-user fe-12 mr-2 "></i>3,527
-                                                member</span>
+                                @foreach ($grups as $item)
+                                    <div class="row py-3">
+                                        <div class="col-md-2">
+                                            <img src="{{ Storage::url($item->image) }}" class="w-100 rounded"
+                                                alt="">
                                         </div>
-                                        <div class="card-button">
-                                            <span class="badge badge-light bg-success py-2 px-3 rounded">open</span>
+                                        <div class="col-md-2">
+                                            <h5 class="h6 card-title mb-1">{{ $item->name }}</h5>
+                                            <div class="card-text mb-1">
+                                                <span class="badge text-muted"><i class="fe fe-user fe-12 mr-2 "></i>3,527
+                                                    member</span>
+                                            </div>
+                                            <div class="card-button">
+                                                <span
+                                                    class="badge badge-light bg-success py-2 px-3 rounded">{{ $item->status }}</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="title-desc">
-                                            <h6>Deskripsi</h6>
+                                        <div class="col-md-3">
+                                            <div class="title-desc">
+                                                <h6>Deskripsi</h6>
+                                            </div>
+                                            <div class="content-desc">
+                                                <span>{{ $item->description }}</span>
+                                            </div>
                                         </div>
-                                        <div class="content-desc">
-                                            <span>sebuah seruan kemanusiaan untuk dukung gerakan anti LGBT di Cilacap untuk
-                                                kemajuan bangsa</span>
+                                        <div class="col-md-3">
+                                            <i class="fe fe-map-pin f-12"></i>
+                                            {{ $item->provinsi . ',' . ' ' . $item->negara }}
                                         </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <i class="fe fe-map-pin f-12"></i> Cilacap, Indonesia
-                                    </div>
-                                    <div class="col-md-2">
-                                        <button class="btn btn-primary"> <i class="fe fe-log-in fe-12"></i> Ikut
-                                            Grup</button>
-                                    </div>
-                                </div>
-                                <div class="row py-3">
-                                    <div class="col-md-2">
-                                        <img src="{{ asset('image/grup/grup-3.png') }}" class="w-100 rounded-circle"
-                                            alt="">
-                                    </div>
-                                    <div class="col-md-2">
-                                        <h5 class="h6 card-title mb-1">Lindungi Ketahui</h5>
-                                        <div class="card-text mb-1">
-                                            <span class="badge text-muted"><i class="fe fe-user fe-12 mr-2 "></i>2,887
-                                                member</span>
-                                        </div>
-                                        <div class="card-button">
-                                            <span class="badge badge-light bg-success py-2 px-3 rounded">open</span>
+                                        <div class="col-md-2">
+                                            <button class="btn btn-primary"> <i class="fe fe-log-in fe-12"></i> Ikut
+                                                Grup</button>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="title-desc">
-                                            <h6>Deskripsi</h6>
-                                        </div>
-                                        <div class="content-desc">
-                                            <span>sebuah seruan kemanusiaan untuk dukung gerakan anti LGBT di Semarang untuk
-                                                kemajuan Bangsa</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <i class="fe fe-map-pin f-12"></i> Nasional, Indonesia
-                                    </div>
-                                    <div class="col-md-2">
-                                        <button class="btn btn-primary"> <i class="fe fe-log-in fe-12"></i> Ikut
-                                            Grup</button>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                 <div class="row py-3">

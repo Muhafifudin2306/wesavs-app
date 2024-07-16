@@ -51,6 +51,12 @@ Route::prefix('setting')->group(function () {
         Route::get('/', [App\Http\Controllers\TugasController::class, 'indexSetting'])->name('indexSettingTugas');
         Route::post('/updateData/{id}', [App\Http\Controllers\TugasController::class, 'updateData'])->name('updateSettingTugas');
     });
+    Route::prefix('grup')->group(function () {
+        Route::get('/', [App\Http\Controllers\GrupController::class, 'settingGrup'])->name('indexSettingGrup');
+        Route::post('/storeGrup', [App\Http\Controllers\GrupController::class, 'storeGrup'])->name('storeGrup');
+        Route::delete('/delete/{id}', [App\Http\Controllers\GrupController::class, 'destroyGrup'])->name('deleteGrup');
+        Route::post('/update/{id}', [App\Http\Controllers\GrupController::class, 'updateGrup'])->name('updateSettingGrup');
+    });
 });
 
 Route::prefix('akun')->group(function () {

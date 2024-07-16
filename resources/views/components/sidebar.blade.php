@@ -52,6 +52,12 @@
                 </a>
             </li>
             <li class="nav-item w-100">
+                <a class="nav-link" href="{{ route('indexSettingGrup') }}">
+                    <i class="fe fe-users fe-16"></i>
+                    <span class="ml-3 item-text">Manajemen Grup</span>
+                </a>
+            </li>
+            <li class="nav-item w-100">
                 <a class="nav-link" href="{{ route('indexTugas') }}">
                     <i class="fe fe-file fe-16"></i>
                     <span class="ml-3 item-text">Tugas</span>
