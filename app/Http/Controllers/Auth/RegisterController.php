@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Point;
 use App\Models\User;
+use App\Models\UserHasPoint;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
@@ -71,6 +74,15 @@ class RegisterController extends Controller
         ]);
         $userRole = Role::where('name', 'user')->first();
         $user->assignRole($userRole);
+
+        $point = Point::where('id', 3)->first();
+        $expiryDate = Carbon::now()->endOfYear();
+
+        UserHasPoint::create([
+            'id_user' => $user->id,
+            'point' => $point->point,
+            'expire_date' => $expiryDate
+        ]);
 
         return $user;
     }

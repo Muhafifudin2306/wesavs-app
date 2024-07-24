@@ -29,6 +29,7 @@
                                             <th><strong>Foto</strong></th>
                                             <th><strong>Nama</strong></th>
                                             <th><strong>Email</strong></th>
+                                            <th><strong>Role</strong></th>
                                             <th><strong>Nomor Telpon</strong></th>
                                             <th><strong>Dibuat Pada</strong></th>
                                             <th><strong>Aksi</strong></th>
@@ -56,6 +57,19 @@
                                                 </th>
                                                 <th>{{ $item->name }}</th>
                                                 <th>{{ $item->email }}</th>
+                                                <th>
+                                                    @foreach ($item->roles as $role)
+                                                        @if ($role->name == 'user')
+                                                            <span class="text-primary">
+                                                                {{ $role->name }}
+                                                            </span>
+                                                        @elseif($role->name == 'admin')
+                                                            <span class="text-danger">
+                                                                {{ $role->name }}
+                                                            </span>
+                                                        @endif
+                                                    @endforeach
+                                                </th>
                                                 <th>{{ $item->number }}</th>
                                                 <td>
                                                     {{ $item->updated_at->format('d F Y') }}

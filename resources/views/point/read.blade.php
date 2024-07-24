@@ -20,11 +20,12 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="content-panel">
                                     <div class="point-panel mb-3">
-                                        <h2>1,200 Point</h2>
+                                        <h2>{{ $myPoint }} Point</h2>
                                         <h6 class="text-muted">Total Point Didapatkan</h6>
                                     </div>
                                     <div class="exp-panel">
-                                        <button class="btn btn-danger"><small>expired: 31-12-2024</small> </button>
+                                        <button class="btn btn-danger"><small>expired:
+                                                {{ $endOfYear->format('d-m-Y') }}</small> </button>
                                     </div>
                                 </div>
                                 <div class="icon-panel">
