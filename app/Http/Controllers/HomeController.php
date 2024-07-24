@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Factor;
+use App\Models\Grup;
 use App\Models\Impact;
 use App\Models\Mitigation;
+use App\Models\Point;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -33,7 +36,11 @@ class HomeController extends Controller
         $factor = Factor::latest()->first();
         $impact = Impact::latest()->first();
         $mitigation = Mitigation::latest()->first();
-        return view('home', compact('blogs', 'factor', 'impact','mitigation'));
+        $userCount = User::count();
+        $blogCount = Blog::count();
+        $grupCount = Grup::count();
+        $taskCount = Point::count();
+        return view('home', compact('blogs', 'factor', 'impact','mitigation', 'userCount', 'blogCount', 'grupCount', 'taskCount'));
     }
 
     public function settingHome()
