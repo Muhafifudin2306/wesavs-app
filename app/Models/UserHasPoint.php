@@ -11,6 +11,8 @@ class UserHasPoint extends Model
     protected $fillable = [
         'id_user',
         'point',
-        'expire_date'
+        'expire_date',
+        'last_login_date',
+        'is_new'
     ];
 }

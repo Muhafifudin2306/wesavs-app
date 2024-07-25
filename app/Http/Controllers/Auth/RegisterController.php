@@ -11,6 +11,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Session;
+
 
 class RegisterController extends Controller
 {
@@ -81,8 +83,12 @@ class RegisterController extends Controller
         UserHasPoint::create([
             'id_user' => $user->id,
             'point' => $point->point,
-            'expire_date' => $expiryDate
+            'expire_date' => $expiryDate,
+            'is_new' => 1
         ]);
+
+        Session::flash('welcome_message', 'Pengguna baru!, anda berhasil mendapat {$point->point} point!.');
+
 
         return $user;
     }

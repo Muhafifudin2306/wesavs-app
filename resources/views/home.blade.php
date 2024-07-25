@@ -405,4 +405,24 @@
         var splide = new Splide('.splide');
         splide.mount();
     </script>
+    @if ($newPointAdded)
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Notiflix.Notify.success("Login Harian, anda berhasil mendapat {{ $loginPoint->point }} point!", {
+                    timeout: 10000
+                });
+            });
+        </script>
+    @endif
+
+    @if (session('welcome_message'))
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Notiflix.Notify.success("Pengguna baru, anda berhasil mendapat {{ $registerPoint->point }} point!", {
+                    timeout: 10000
+                });
+            });
+        </script>
+    @endif
+
 @endsection

@@ -9,6 +9,8 @@ use App\Models\Impact;
 use App\Models\Mitigation;
 use App\Models\Point;
 use App\Models\User;
+use App\Models\UserHasPoint;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -40,7 +42,28 @@ class HomeController extends Controller
         $blogCount = Blog::count();
         $grupCount = Grup::count();
         $taskCount = Point::count();
-        return view('home', compact('blogs', 'factor', 'impact','mitigation', 'userCount', 'blogCount', 'grupCount', 'taskCount'));
+        $today = Carbon::now()->toDateString();
+        $newPointAdded = false;
+
+        $userHasPoint = UserHasPoint::where('id_user', Auth::user()->id)
+                                    ->where('last_login_date', $today)
+                                    ->first();
+        $loginPoint = Point::where('id', 2)->first();
+        $registerPoint = Point::where('id', 3)->first();
+        $registerPoint = Point::where('id', 3)->first();
+        if (!$userHasPoint) {
+            $expiryDate = Carbon::now()->endOfYear();
+
+            UserHasPoint::create([
+                'id_user' => Auth::user()->id,
+                'point' => $loginPoint->point,
+                'last_login_date' => $today,
+                'expire_date' => $expiryDate
+            ]);
+            $newPointAdded = true;
+        }
+
+        return view('home', compact('blogs','newPointAdded','loginPoint','registerPoint', 'factor', 'impact','mitigation', 'userCount', 'blogCount', 'grupCount', 'taskCount'));
     }
 
     public function settingHome()
