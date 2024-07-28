@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Events\MessageSent;
 use App\Models\Grup;
 use App\Models\Message;
+use App\Models\UserHasGrup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class GrupController extends Controller
 {
@@ -17,7 +20,17 @@ class GrupController extends Controller
     public function index()
     {
         $grups = Grup::latest()->get();
-        return view('grup.read', compact('grups'));
+        $userId = Auth::user()->id;
+        $userHasGrup = UserHasGrup::where('id_user', $userId)->get();
+        return view('grup.read', compact('grups','userHasGrup'));
+    }
+
+    public function userIndex()
+    {
+        $grups = Grup::latest()->get();
+        $userId = Auth::user()->id;
+        $userHasGrup = UserHasGrup::where('id_user', $userId)->get();
+        return view('grup.user.read', compact('grups','userHasGrup'));
     }
 
     public function settingGrup()
@@ -36,6 +49,7 @@ class GrupController extends Controller
 
         gRUP::create([
             'name' => $request->name,
+            'slug' => Str::slug($request->name),
             'description' => $request->description,
             'provinsi' => $request->provinsi,
             'negara' => $request->negara,
@@ -46,17 +60,19 @@ class GrupController extends Controller
         return response()->json(['message' => 'Store Data Berhasil!'], 201);
     }
 
-    public function indexChat()
+    public function indexChat($slug)
     {
-        $messages = Message::all();
-        return view('grup.chat.read', compact('messages'));
+        $grup = Grup::where('slug', $slug)->first();
+        $messages = Message::where('grup_id', $grup->id)->get();
+        return view('grup.chat.read', compact('messages', 'grup'));
     }
 
     public function sendMessage(Request $request)
     {
         $message = Message::create([
             'message' => $request->input('message'),
-            'user_id' => $request->input('sender')
+            'user_id' => $request->input('sender'),
+            'grup_id' => $request->input('grup')
         ]);
 
         event(new MessageSent($message));
@@ -80,6 +96,7 @@ class GrupController extends Controller
         $grup->update([
             'name' => $request->name,
             'description' => $request->description,
+            'slug' => Str::slug($request->name),
             'provinsi' => $request->provinsi,
             'negara' => $request->negara
         ]);
@@ -91,6 +108,14 @@ class GrupController extends Controller
                 'image' => $imagePath,
             ]);
         };
+        return response()->json(['message' => 'Update Data Berhasil!'], 201);
+    }
+
+    public function joinGrup(Request $request, $id){
+        UserHasGrup::create([
+            'id_user' => Auth::user()->id, 
+            'id_grup' => $id
+        ]);
         return response()->json(['message' => 'Update Data Berhasil!'], 201);
     }
 }

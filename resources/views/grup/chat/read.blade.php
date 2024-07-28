@@ -5,9 +5,10 @@
 @section('content')
     <style>
         .length-group-chat {
-            max-height: 300px;
+            max-height: 400px;
             overflow-y: scroll;
-            overflow-x: hidden
+            overflow-x: hidden;
+            max-width: 100%;
         }
     </style>
     <script src="https://cdn.ably.com/lib/ably.min-1.js" type="text/javascript"></script>
@@ -29,14 +30,14 @@
                 </div> <!-- /.col-12 -->
                 <div class="card shadow mb-4">
                     <div class="card-header">
-                        <strong class="card-title">Anti-LGBT Indonesia</strong>
+                        <strong class="card-title">{{ $grup->name }}</strong>
                         <span class="float-right"><span class="badge badge-pill badge-success text-white">open</span></span>
                     </div>
                     <div class="card-body">
                         <dl class="row align-items-center mb-0">
                             <dt class="col-sm-2 mb-3 text-muted">Admin Grup</dt>
                             <dd class="col-sm-4 mb-3">
-                                <strong>Muhammad Afifudin</strong>
+                                <strong>{{ $grup->user->name }}</strong>
                             </dd>
                             <dt class="col-sm-2 mb-3 text-muted">Jumlah Member</dt>
                             <dd class="col-sm-4 mb-3">
@@ -46,7 +47,7 @@
                         <dl class="row align-items-center mb-0">
                             <dt class="col-sm-2 mb-3 text-muted">Dibuat Pada</dt>
                             <dd class="col-sm-4 mb-3">
-                                <strong>2024-05-22 00:14:38</strong>
+                                <strong>{{ $grup->created_at }}</strong>
                             </dd>
                             <dt class="col-sm-2 mb-3 text-muted">Tipe Grup</dt>
                             <dd class="col-sm-4 mb-3">
@@ -56,8 +57,7 @@
                         <dl class="row mb-0">
                             <dt class="col-sm-2 mb-3 text-muted">Deskripsi</dt>
                             <dd class="col-sm-4 mb-3">
-                                <strong>sebuah seruan kemanusiaan untuk dukung gerakan anti LGBT dan berimpact untuk
-                                    kemajuan bangsa</strong>
+                                <strong>{{ $grup->description }}</strong>
                             </dd>
                         </dl>
                     </div> <!-- .card-body -->
@@ -70,19 +70,33 @@
                     </div>
                     <div class="card-body">
                         <div id="scrollableDiv" class="height-custom length-group-chat">
-                            <div id="messages">
-                                @foreach ($messages as $message)
-                                    <div class="row align-items-center mb-4">
-                                        <div class="col">
-                                            <strong>{{ $message->user->name }}</strong>
-                                            <div class="mb-2">{{ $message->message }}</div>
-                                            <small
-                                                class="text-muted">{{ \Carbon\Carbon::parse($message->created_at)->format('Y-m-d') }}</small>
+                            @foreach ($messages as $message)
+                                <div class="row align-items-center mb-4 mx-2">
+                                    @if ($message->user_id == Auth::user()->id)
+                                        <div class="col"></div>
+                                        <div class="col-md-7 col-8 border rounded mx-2 p-2 bg-light">
+                                            <strong
+                                                class="bg-success text-white pr-3 pl-1 rounded">{{ $message->user->name }}
+                                                (Me)
+                                            </strong>
+                                            <div class="mb-2 mt-1">{{ $message->message }}</div>
+                                            <p class="text-muted" align="right">
+                                                {{ \Carbon\Carbon::parse($message->created_at)->format('Y-m-d') }}</p>
                                         </div>
-                                    </div> <!-- .row-->
-                                @endforeach
+                                    @else
+                                        <div class="col-md-7 col-8 border rounded mx-2 p-2">
+                                            <strong
+                                                class="bg-dark text-white pr-3 pl-1 rounded">{{ $message->user->name }}</strong>
+                                            <div class="mb-2 mt-1">{{ $message->message }}</div>
+                                            <p class="text-muted" align="right">
+                                                {{ \Carbon\Carbon::parse($message->created_at)->format('Y-m-d') }}</p>
+                                        </div>
+                                    @endif
+                                </div> <!-- .row-->
+                            @endforeach
+                            <div class="mb-4 mx-2">
+                                <div id="messages"></div>
                             </div>
-                            <div id="messages" class="mb-4"></div>
                         </div>
                         <script>
                             window.onload = function() {
@@ -114,14 +128,15 @@
     <script type="text/javascript">
         // Connect to Ably with your API key
         const realtime = new Ably.Realtime.Promise("trEo7g.-zYUQA:WIqSAWOjhrr9DVtl-c0ERm-5o2ZoalsQEAWajS291JU");
-
+        const grup = "{{ $grup->id }}";
         // Create a channel called 'chat'
-        const channel = realtime.channels.get("chat");
-
+        const channel = realtime.channels.get("chat-" + grup);
         // Subscribe to messages on the 'chat' channel
-        channel.subscribe("message", (message) => {
-            displayMessage(message.data);
-        });
+        if (grup) {
+            channel.subscribe("message", (message) => {
+                displayMessage(message.data);
+            });
+        }
 
         // Function to display a message
         function displayMessage(message) {
@@ -129,17 +144,35 @@
             const messageContent = messageParts.length > 1 ? messageParts[1] : "";
             const sender = messageParts.length > 1 ? messageParts[0] : "";
             const dateTime = messageParts.length > 1 ? messageParts[2] : "";
-
             const messagesDiv = document.getElementById("messages");
+            const idSender = "{{ Auth::user()->name }}";
             const messageElement = document.createElement("div");
             messageElement.classList.add("row", "align-items-center", "mb-4");
-            messageElement.innerHTML = `
-        <div class="col">
-            <strong>${sender}</strong>
-            <div class="mb-2">${messageContent}</div>
-            <small class="text-muted">${dateTime}</small>
-        </div>
-    `;
+            console.log('this sender' + sender)
+            console.log('this id_sender' + idSender)
+            if (sender === idSender) {
+                messageElement.innerHTML = `
+            <div class="col"></div>
+            <div class="col-md-7 col-8 border rounded mx-2 p-2 bg-light">
+                <strong
+                    class="bg-success text-white pr-3 pl-1 rounded">${sender}
+                    (Me)
+                </strong>
+                <div class="mb-2 mt-1">${messageContent}</div>
+                <p class="text-muted" align="right">
+                    ${dateTime}</p>
+            </div>
+            `;
+            } else {
+                messageElement.innerHTML = `
+            <div class="col-md-7 col-8 border rounded mx-2 p-2">
+                <strong
+                    class="bg-dark text-white pr-3 pl-1 rounded">${sender}</strong>
+                <div class="mb-2 mt-1">${messageContent}</div>
+                <p class="text-muted" align="right">${dateTime}</p>
+            </div>
+            `;
+            }
             messagesDiv.appendChild(messageElement);
             messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto scroll to bottom
         }
@@ -150,14 +183,15 @@
             const messageContent = document.getElementById('messageInput').value;
             const sender = "{{ Auth::user()->name }}";
             const idSender = "{{ Auth::user()->id }}";
+            const grup = "{{ $grup->id }}";
             const dateTime = new Date().toISOString().split('T')[0];
-            const message = sender + ';' + messageContent + ';' + dateTime;
+            const message = sender + ';' + messageContent + ';' + dateTime + ';' + grup;
+
             if (message !== "") {
                 // Publish the message to the 'chat' channel
                 channel.publish("message", message);
                 messageInput.value = "";
             }
-
             fetch('/grup/send-message', {
                     method: 'POST',
                     headers: {
@@ -166,7 +200,8 @@
                     },
                     body: JSON.stringify({
                         message: messageContent,
-                        sender: idSender
+                        sender: idSender,
+                        grup: grup
                     })
                 })
                 .then(response => response.json())

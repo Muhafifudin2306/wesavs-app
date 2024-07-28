@@ -82,8 +82,8 @@
                                                                 data-target="#userModal{{ $item->id }}"></i>
                                                         </div>
                                                         <div class="right-button">
-                                                            <i
-                                                                class="fe fe-trash user-delete mx-1 fe-16 text-danger cursor-pointer"data-card-id="{{ $item->id }}"></i>
+                                                            <i class="fe fe-trash user-delete mx-1 fe-16 text-danger cursor-pointer"
+                                                                data-card-id="{{ $item->id }}"></i>
                                                         </div>
                                                     </div>
                                                 </th>

@@ -14,6 +14,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class HomeController extends Controller
 {
@@ -44,23 +46,26 @@ class HomeController extends Controller
         $taskCount = Point::count();
         $today = Carbon::now()->toDateString();
         $newPointAdded = false;
-
-        $userHasPoint = UserHasPoint::where('id_user', Auth::user()->id)
-                                    ->where('last_login_date', $today)
-                                    ->first();
         $loginPoint = Point::where('id', 2)->first();
         $registerPoint = Point::where('id', 3)->first();
-        $registerPoint = Point::where('id', 3)->first();
-        if (!$userHasPoint) {
-            $expiryDate = Carbon::now()->endOfYear();
+        $currentUser = Auth::user();
 
-            UserHasPoint::create([
-                'id_user' => Auth::user()->id,
-                'point' => $loginPoint->point,
-                'last_login_date' => $today,
-                'expire_date' => $expiryDate
-            ]);
-            $newPointAdded = true;
+        // Cek apakah pengguna memiliki peran 'user'
+        if ($currentUser && $currentUser->hasRole('user')) {
+            $userHasPoint = UserHasPoint::where('id_user', $currentUser->id)
+                                        ->where('last_login_date', $today)
+                                        ->first();
+            if (!$userHasPoint) {
+                $expiryDate = Carbon::now()->endOfYear();
+
+                UserHasPoint::create([
+                    'id_user' => $currentUser->id,
+                    'point' => $loginPoint->point,
+                    'last_login_date' => $today,
+                    'expire_date' => $expiryDate
+                ]);
+                $newPointAdded = true;
+            }
         }
 
         return view('home', compact('blogs','newPointAdded','loginPoint','registerPoint', 'factor', 'impact','mitigation', 'userCount', 'blogCount', 'grupCount', 'taskCount'));

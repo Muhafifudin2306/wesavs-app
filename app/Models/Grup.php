@@ -9,6 +9,11 @@ class Grup extends Model
     protected $table = 'grups';
 
     protected $fillable  = [
-        'image', 'name', 'description', 'provinsi', 'negara', 'status'
+        'slug','image', 'name', 'description', 'provinsi', 'negara', 'status', 'created_by'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }
