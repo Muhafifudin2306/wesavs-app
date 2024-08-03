@@ -26,8 +26,7 @@
                                             <th><strong>No</strong></th>
                                             <th><strong>Cover</strong></th>
                                             <th><strong>Sumber</strong></th>
-                                            <th><strong>Dibuat Pada</strong></th>
-                                            <th><strong>Aksi</strong></th>
+                                            <th><strong>Download</strong></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -44,25 +43,11 @@
                                                     </div>
                                                 </th>
                                                 <th>
-                                                    <a href="{{ Storage::url($item->file) }}" target="_blank">Unduh
-                                                        File</a>
                                                     {!! $item->source !!}
                                                 </th>
-                                                <td>
-                                                    {{ $item->updated_at->format('d F Y') }}
-                                                </td>
                                                 <th>
-                                                    <div class="d-flex">
-                                                        <div class="left-button">
-                                                            <i class="fe fe-edit mx-1 fe-16 text-warning cursor-pointer"
-                                                                data-toggle="modal"
-                                                                data-target="#blogEditModal-{{ $item->id }}"></i>
-                                                        </div>
-                                                        <div class="right-button">
-                                                            <i
-                                                                class="fe fe-trash blog-delete mx-1 fe-16 text-danger cursor-pointer"data-card-id="{{ $item->id }}"></i>
-                                                        </div>
-                                                    </div>
+                                                    <i class="fe fe-download fe-12"></i>
+                                                    <a href="{{ Storage::url($item->file) }}" target="_blank">Unduh</a>
                                                 </th>
                                             </tr>
                                         @endforeach
