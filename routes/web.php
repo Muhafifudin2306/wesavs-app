@@ -83,6 +83,7 @@ Route::prefix('grup')->group(function () {
     Route::get('/chat/{slug}', [App\Http\Controllers\GrupController::class, 'indexChat'])->name('indexChat');
     Route::post('/send-message', [App\Http\Controllers\GrupController::class, 'sendMessage']);
     Route::post('/join/{id}', [App\Http\Controllers\GrupController::class, 'joinGrup']);
+    Route::delete('/leave/{id}', [App\Http\Controllers\GrupController::class, 'leaveGrup'])->name('leaveEbook');
 });
 
 Route::prefix('point')->group(function () {

@@ -14,7 +14,7 @@
                         <p>Cari dan ikuti forum produktif tentang disorientasi seksual</p>
                     </div>
                 </div> <!-- /.col-12 -->
-                <h2 class="h5 my-2">Grup Terfavorit</h2>
+                {{-- <h2 class="h5 my-2">Grup Terfavorit</h2>
                 <div class="row mb-4">
                     <div class="col-md-3 col-6">
                         <div class="card border-0 bg-transparent">
@@ -67,12 +67,12 @@
                             </div>
                         </div> <!-- .card -->
                     </div>
-                </div> <!-- .card-deck -->
-                <div class="d-flex justify-content-between">
+                </div> <!-- .card-deck --> --}}
+                {{-- <div class="d-flex justify-content-between">
                     <div class="title-section">
                         <h2 class="h5 mt-2 mb-4">Grup Tersedia</h2>
                     </div>
-                </div>
+                </div> --}}
                 <div class="card shadow">
                     <div class="card-body">
                         <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
@@ -95,10 +95,10 @@
                                         </div>
                                         <div class="col-md-2">
                                             <h5 class="h6 card-title mb-1">{{ $item->name }}</h5>
-                                            <div class="card-text mb-1">
+                                            {{-- <div class="card-text mb-1">
                                                 <span class="badge text-muted"><i class="fe fe-user fe-12 mr-2 "></i>3,527
                                                     member</span>
-                                            </div>
+                                            </div> --}}
                                             <div class="card-button">
                                                 <span
                                                     class="badge badge-light bg-success py-2 px-3 rounded">{{ $item->status }}</span>
@@ -132,8 +132,10 @@
                                                     </a>
                                                 </div>
                                                 <div class="mb-2">
-                                                    <button class="btn btn-danger"> <i class="fe fe-log-out fe-12"></i>
-                                                        Keluar Grup</button>
+                                                    <button class="btn btn-danger grup-delete"
+                                                        data-card-id="{{ $item->id }}"> <i
+                                                            class="fe fe-log-out fe-12"></i> Keluar
+                                                        Grup</button>
                                                 </div>
                                             @else
                                                 <button class="btn btn-primary join-grup"
@@ -173,6 +175,37 @@
                             .then(response => response.json())
                             .then(data => {
                                 Notiflix.Notify.success("Data User berhasil dihapus!", {
+                                    timeout: 3000
+                                });
+
+                                location.reload();
+                            })
+                            .catch(error => {
+                                Notiflix.Notify.failure('Error:', error);
+                            });
+                    });
+            });
+        });
+    </script>
+    <script>
+        const leaveGrup = document.querySelectorAll('.grup-delete');
+
+        leaveGrup.forEach(button => {
+            button.addEventListener('click', function() {
+                const cardId = button.dataset.cardId;
+
+                Notiflix.Confirm.show('Konfirmasi', 'Apakah Anda yakin ingin keluar grup ini?', 'Ya',
+                    'Batal',
+                    function() {
+                        fetch(`/grup/leave/${cardId}`, {
+                                method: 'DELETE',
+                                headers: {
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                }
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                Notiflix.Notify.success("Anda berhasil keluar!", {
                                     timeout: 3000
                                 });
 

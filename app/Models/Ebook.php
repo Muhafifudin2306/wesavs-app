@@ -9,6 +9,6 @@ class Ebook extends Model
     protected $table = 'ebooks';
 
     protected $fillable  = [
-        'content'
+        'cover', 'file', 'source'
     ];
 }

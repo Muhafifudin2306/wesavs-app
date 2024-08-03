@@ -118,4 +118,14 @@ class GrupController extends Controller
         ]);
         return response()->json(['message' => 'Update Data Berhasil!'], 201);
     }
+
+    public function leaveGrup($id)
+    {
+        $userId = Auth::user()->id;
+        $grup = UserHasGrup::where('id_user', $userId)->where('id_grup', $id)->first();
+
+        $grup->delete();
+
+        return response()->json(['success' => 'Delete Grup Successfully']);
+    }
 }

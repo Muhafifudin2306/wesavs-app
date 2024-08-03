@@ -24,7 +24,8 @@
                         <p>Berdiskusi dan berbagi dengan sopan santun</p>
                     </div>
                     <div class="button-panel">
-                        <button class="btn btn-danger"> <i class="fe fe-log-out fe-12"></i> Keluar
+                        <button class="btn btn-danger grup-delete" data-card-id="{{ $grup->id }}"> <i
+                                class="fe fe-log-out fe-12"></i> Keluar
                             Grup</button>
                     </div>
                 </div> <!-- /.col-12 -->
@@ -39,9 +40,13 @@
                             <dd class="col-sm-4 mb-3">
                                 <strong>{{ $grup->user->name }}</strong>
                             </dd>
-                            <dt class="col-sm-2 mb-3 text-muted">Jumlah Member</dt>
+                            {{-- <dt class="col-sm-2 mb-3 text-muted">Jumlah Member</dt>
                             <dd class="col-sm-4 mb-3">
                                 <strong>12,344 member</strong>
+                            </dd> --}}
+                            <dt class="col-sm-2 mb-3 text-muted">Tipe Grup</dt>
+                            <dd class="col-sm-4 mb-3">
+                                <strong>Terbuka Untuk Umum</strong>
                             </dd>
                         </dl>
                         <dl class="row align-items-center mb-0">
@@ -49,10 +54,10 @@
                             <dd class="col-sm-4 mb-3">
                                 <strong>{{ $grup->created_at }}</strong>
                             </dd>
-                            <dt class="col-sm-2 mb-3 text-muted">Tipe Grup</dt>
+                            {{-- <dt class="col-sm-2 mb-3 text-muted">Tipe Grup</dt>
                             <dd class="col-sm-4 mb-3">
                                 <strong>Terbuka Untuk Umum</strong>
-                            </dd>
+                            </dd> --}}
                         </dl>
                         <dl class="row mb-0">
                             <dt class="col-sm-2 mb-3 text-muted">Deskripsi</dt>
@@ -213,5 +218,36 @@
                     console.error('Error:', error);
                 });
         }
+    </script>
+    <script>
+        const leaveGrup = document.querySelectorAll('.grup-delete');
+
+        leaveGrup.forEach(button => {
+            button.addEventListener('click', function() {
+                const cardId = button.dataset.cardId;
+
+                Notiflix.Confirm.show('Konfirmasi', 'Apakah Anda yakin ingin keluar grup ini?', 'Ya',
+                    'Batal',
+                    function() {
+                        fetch(`/grup/leave/${cardId}`, {
+                                method: 'DELETE',
+                                headers: {
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                }
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                Notiflix.Notify.success("Anda berhasil keluar!", {
+                                    timeout: 3000
+                                });
+
+                                window.location.href = '/grup'
+                            })
+                            .catch(error => {
+                                Notiflix.Notify.failure('Error:', error);
+                            });
+                    });
+            });
+        });
     </script>
 @endsection
