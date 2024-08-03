@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Events\MessageSent;
 use App\Models\Grup;
 use App\Models\Message;
+use App\Models\Point;
 use App\Models\UserHasGrup;
+use App\Models\UserHasPoint;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -64,7 +67,8 @@ class GrupController extends Controller
     {
         $grup = Grup::where('slug', $slug)->first();
         $messages = Message::where('grup_id', $grup->id)->get();
-        return view('grup.chat.read', compact('messages', 'grup'));
+        $chatPoint = Point::where('id', 1)->first();
+        return view('grup.chat.read', compact('messages', 'grup', 'chatPoint'));
     }
 
     public function sendMessage(Request $request)
@@ -77,7 +81,27 @@ class GrupController extends Controller
 
         event(new MessageSent($message));
 
-        return response()->json(['message' => $message]);
+        $today = Carbon::now()->toDateString();
+        $currentUser = Auth::user();
+        $chatPoint = Point::where('id', 1)->first();
+        $userHasPoint = UserHasPoint::where('id_user', Auth::user()->id)
+                                    ->where('last_chat', $today)
+                                    ->first();
+
+        $newPointAdded = false;
+        if (!$userHasPoint) {
+            $expiryDate = Carbon::now()->endOfYear();
+
+            UserHasPoint::create([
+                'id_user' => $currentUser->id,
+                'point' => $chatPoint->point,
+                'last_chat' => $today,
+                'expire_date' => $expiryDate
+            ]);
+            $newPointAdded = true;
+        }
+
+        return response()->json(['message' => $message, 'point' => $newPointAdded]);
     }
 
     public function destroyGrup($id)

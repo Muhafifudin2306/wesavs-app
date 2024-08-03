@@ -18,7 +18,7 @@ class PointController extends Controller
         $myPoint = UserHasPoint::where('id_user', Auth::user()->id)
                                 ->whereBetween('expire_date', [$startOfYear, $endOfYear])
                                 ->sum('point');
-
-        return view('point.read', compact('myPoint', 'endOfYear'));
+        $points = Point::latest()->get();
+        return view('point.read', compact('myPoint', 'endOfYear', 'points'));
     }
 }

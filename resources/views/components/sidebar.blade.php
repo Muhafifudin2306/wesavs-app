@@ -54,12 +54,12 @@
                         <span class="ml-3 item-text">Grup</span>
                     </a>
                 </li>
-                <li class="nav-item w-100">
+                {{-- <li class="nav-item w-100">
                     <a class="nav-link" href="{{ route('indexTugas') }}">
                         <i class="fe fe-file fe-16"></i>
                         <span class="ml-3 item-text">Tugas</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item w-100">
                     <a class="nav-link" href="{{ route('indexPoint') }}">
                         <i class="fe fe-grid fe-16"></i>

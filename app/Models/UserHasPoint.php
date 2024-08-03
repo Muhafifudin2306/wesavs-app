@@ -13,6 +13,7 @@ class UserHasPoint extends Model
         'point',
         'expire_date',
         'last_login_date',
-        'is_new'
+        'is_new',
+        'last_chat'
     ];
 }

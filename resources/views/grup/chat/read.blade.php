@@ -153,35 +153,27 @@
             const idSender = "{{ Auth::user()->name }}";
             const messageElement = document.createElement("div");
             messageElement.classList.add("row", "align-items-center", "mb-4");
-            console.log('this sender' + sender)
-            console.log('this id_sender' + idSender)
             if (sender === idSender) {
                 messageElement.innerHTML = `
-            <div class="col"></div>
-            <div class="col-md-7 col-8 border rounded mx-2 p-2 bg-light">
-                <strong
-                    class="bg-success text-white pr-3 pl-1 rounded">${sender}
-                    (Me)
-                </strong>
-                <div class="mb-2 mt-1">${messageContent}</div>
-                <p class="text-muted" align="right">
-                    ${dateTime}</p>
-            </div>
+                <div class="col"></div>
+                <div class="col-md-7 col-8 border rounded mx-2 p-2 bg-light">
+                    <strong class="bg-success text-white pr-3 pl-1 rounded">${sender} (Me)</strong>
+                    <div class="mb-2 mt-1">${messageContent}</div>
+                    <p class="text-muted" align="right">${dateTime}</p>
+                </div>
             `;
             } else {
                 messageElement.innerHTML = `
-            <div class="col-md-7 col-8 border rounded mx-2 p-2">
-                <strong
-                    class="bg-dark text-white pr-3 pl-1 rounded">${sender}</strong>
-                <div class="mb-2 mt-1">${messageContent}</div>
-                <p class="text-muted" align="right">${dateTime}</p>
-            </div>
+                <div class="col-md-7 col-8 border rounded mx-2 p-2">
+                    <strong class="bg-dark text-white pr-3 pl-1 rounded">${sender}</strong>
+                    <div class="mb-2 mt-1">${messageContent}</div>
+                    <p class="text-muted" align="right">${dateTime}</p>
+                </div>
             `;
             }
             messagesDiv.appendChild(messageElement);
             messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto scroll to bottom
         }
-
 
         // Function to send a message
         function sendMessage() {
@@ -190,13 +182,14 @@
             const idSender = "{{ Auth::user()->id }}";
             const grup = "{{ $grup->id }}";
             const dateTime = new Date().toISOString().split('T')[0];
-            const message = sender + ';' + messageContent + ';' + dateTime + ';' + grup;
+            const message = `${sender};${messageContent};${dateTime};${grup}`;
 
-            if (message !== "") {
+            if (messageContent !== "") {
                 // Publish the message to the 'chat' channel
                 channel.publish("message", message);
                 messageInput.value = "";
             }
+
             fetch('/grup/send-message', {
                     method: 'POST',
                     headers: {
@@ -211,7 +204,11 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
+                    if (data.point) {
+                        Notiflix.Notify.success("Chat Harian, anda berhasil mendapat {{ $chatPoint->point }} point!", {
+                            timeout: 10000
+                        });
+                    }
                     document.getElementById('messageInput').value = '';
                 })
                 .catch(error => {
@@ -219,6 +216,7 @@
                 });
         }
     </script>
+
     <script>
         const leaveGrup = document.querySelectorAll('.grup-delete');
 

@@ -14,7 +14,7 @@
                         <p>Cari dan ikuti forum produktif tentang disorientasi seksual</p>
                     </div>
                 </div> <!-- /.col-12 -->
-                <h2 class="h5 my-2">Grup Terfavorit</h2>
+                {{-- <h2 class="h5 my-2">Grup Terfavorit</h2>
                 <div class="row mb-4">
                     <div class="col-md-3 col-6">
                         <div class="card border-0 bg-transparent">
@@ -72,13 +72,13 @@
                     <div class="title-section">
                         <h2 class="h5 mt-2 mb-4">Grup Tersedia</h2>
                     </div>
-                    {{-- <div class="action-section">
+                    <div class="action-section">
                         <form class="form-inline mr-auto searchform text-muted">
                             <input class="form-control mr-sm-2 bg-transparent border-0 pl-4 text-muted" type="search"
                                 placeholder="Cari grup tersedia.." aria-label="Search">
                         </form>
-                    </div> --}}
-                </div>
+                    </div>
+                </div> --}}
                 <div class="card shadow">
                     <div class="card-body">
                         <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
