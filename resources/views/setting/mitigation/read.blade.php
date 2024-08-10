@@ -12,8 +12,8 @@
             <div class="container-fluid">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="left-content">
-                        <h2 class="h3 mb-2 mt-4 page-title">Setting Faktor</h2>
-                        <p>Pengatuan untuk mengatur konten dalam Faktor</p>
+                        <h2 class="h3 mb-2 mt-4 page-title">Setting Mitigasi</h2>
+                        <p>Pengatuan untuk mengatur konten dalam Mitigasi</p>
                     </div>
                     <div class="right-content d-flex">
                         @if ($mitigation)

@@ -52,8 +52,11 @@
                                                 <div class="col">
                                                     <strong>{{ $item->title }}</strong>
                                                     <div class="my-0 text-muted small">{{ $item->desc }}</div>
+                                                    <div class="d-inline d-md-none">
+                                                        <strong>+{{ $item->point }} Point</strong>
+                                                    </div>
                                                 </div>
-                                                <div class="col-auto">
+                                                <div class="col-auto d-none d-md-inline">
                                                     <strong>+{{ $item->point }} Point</strong>
                                                 </div>
                                             </div>
@@ -64,6 +67,119 @@
                         </div> <!-- / .card -->
                     </div> <!-- / .col-md-3 -->
                 </div>
+
+
+                <h2 class="h3 mb-0 page-title">Tukarkan Poin Saya</h2>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-body">
+                                <div class="mt-2">
+                                    <a href="">
+                                        <img src="./assets/avatars/face-1.jpg" alt="..."
+                                            class="avatar-img rounded w-100">
+                                    </a>
+                                </div>
+                                <div class="card-text my-1">
+                                    <h5 class="mt-3 mb-2">
+                                        <strong class="card-title my-0">Gelang persahabatan </strong>
+                                    </h5>
+                                    <p class="small"><span>Mari gunakan gelang
+                                            persahabatan dari wesavs untuk couple yang sedang berbahagia</span></p>
+                                </div>
+                            </div> <!-- ./card-text -->
+                            <div class="card-footer">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-auto">
+                                        <small>
+                                            <span class="dot dot-lg bg-success mr-1"></span> 120 Point </small>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="file-action">
+                                            <button class="btn btn-info">Tukarkan Poin</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- /.card-footer -->
+                        </div>
+                    </div> <!-- .col -->
+                    <div class="col-md-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-body">
+                                <div class="mt-2">
+                                    <a href="">
+                                        <img src="./assets/avatars/face-1.jpg" alt="..."
+                                            class="avatar-img rounded w-100">
+                                    </a>
+                                </div>
+                                <div class="card-text my-1">
+                                    <h5 class="mt-3 mb-2">
+                                        <strong class="card-title my-0">Gelang persahabatan </strong>
+                                    </h5>
+                                    <p class="small"><span>Mari gunakan gelang
+                                            persahabatan dari wesavs untuk couple yang sedang berbahagia</span></p>
+                                </div>
+                            </div> <!-- ./card-text -->
+                            <div class="card-footer">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-auto">
+                                        <small>
+                                            <span class="dot dot-lg bg-success mr-1"></span> 120 Point </small>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="file-action">
+                                            <button class="btn btn-info">Tukarkan Poin</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- /.card-footer -->
+                        </div>
+                    </div> <!-- .col -->
+                    <div class="col-md-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-body">
+                                <div class="mt-2">
+                                    <a href="">
+                                        <img src="./assets/avatars/face-1.jpg" alt="..."
+                                            class="avatar-img rounded w-100">
+                                    </a>
+                                </div>
+                                <div class="card-text my-1">
+                                    <h5 class="mt-3 mb-2">
+                                        <strong class="card-title my-0">Gelang persahabatan </strong>
+                                    </h5>
+                                    <p class="small"><span>Mari gunakan gelang
+                                            persahabatan dari wesavs untuk couple yang sedang berbahagia</span></p>
+                                </div>
+                            </div> <!-- ./card-text -->
+                            <div class="card-footer">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-auto">
+                                        <small>
+                                            <span class="dot dot-lg bg-success mr-1"></span> 120 Point </small>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="file-action">
+                                            <button class="btn btn-info">Tukarkan Poin</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- /.card-footer -->
+                        </div>
+                    </div> <!-- .col -->
+                    <div class="col-md-9">
+                    </div> <!-- .col -->
+                </div> <!-- .row -->
+                <nav aria-label="Table Paging" class="my-3">
+                    <ul class="pagination justify-content-end mb-0">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
             </div> <!-- .row -->
         </main>
     </div> <!-- .container-fluid -->

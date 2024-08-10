@@ -25,7 +25,7 @@
                                         <span class="circle bg-light" style="width:120px;height:120px">
                                             <i class="fe fe-feather fe-32 text-primary"></i>
                                         </span>
-                                        <h6 class="my-3">Faktor-Faktor</h6>
+                                        <h6 class="my-3">Faktor-Faktor <br> Disorientasi Seksual</h6>
                                     </div> <!-- .col -->
                                 </div> <!-- .card-body -->
                             </div> <!-- .card -->
@@ -37,7 +37,7 @@
                                         <span class="circle bg-light" style="width:120px;height:120px">
                                             <i class="fe fe-sun fe-32 text-primary"></i>
                                         </span>
-                                        <h6 class="my-3">Dampak</h6>
+                                        <h6 class="my-3">Dampak <br> Disorientasi Seksual</h6>
                                     </div> <!-- .col -->
                                 </div> <!-- .card-body -->
                             </div> <!-- .card -->
@@ -49,7 +49,7 @@
                                         <span class="circle bg-light" style="width:120px;height:120px">
                                             <i class="fe fe-shield-off fe-32 text-primary"></i>
                                         </span>
-                                        <h6 class="my-3">Mitigasi Pencegahan</h6>
+                                        <h6 class="my-3">Mitigasi Pencegahan <br> Disorientasi Seksual</h6>
                                     </div> <!-- .col -->
                                 </div> <!-- .card-body -->
                             </div> <!-- .card -->
@@ -335,7 +335,7 @@
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="ebookModalLabel">Faktor-Faktor</h5>
+                    <h5 class="modal-title" id="ebookModalLabel">Faktor-Faktor Disorientasi Seksual</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -357,7 +357,7 @@
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="ebookModalLabel">Dampak</h5>
+                    <h5 class="modal-title" id="ebookModalLabel">Dampak Disorientasi Seksual</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -379,7 +379,7 @@
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="ebookModalLabel">Dampak</h5>
+                    <h5 class="modal-title" id="ebookModalLabel">Mitigas Pencegahan Disorientasi Seksual</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

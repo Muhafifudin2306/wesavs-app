@@ -57,6 +57,9 @@ Route::prefix('setting')->group(function () {
         Route::delete('/delete/{id}', [App\Http\Controllers\GrupController::class, 'destroyGrup'])->name('deleteGrup');
         Route::post('/update/{id}', [App\Http\Controllers\GrupController::class, 'updateGrup'])->name('updateSettingGrup');
     });
+    Route::prefix('gift')->group(function () {
+        Route::get('/', [App\Http\Controllers\PointController::class, 'settingGift'])->name('indexSettingGift');
+    });
 });
 
 Route::prefix('akun')->group(function () {

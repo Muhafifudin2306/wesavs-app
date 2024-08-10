@@ -131,7 +131,7 @@
                                             </span>
                                         </div> <!-- .col -->
                                         <div class="col">
-                                            <a href="{{ url('/tugas') }}">
+                                            <a href="{{ url('/point') }}">
                                                 <h3 class="h5 mt-4 mb-1">Tugas</h3>
                                             </a>
                                             <p class="text-muted">Jelajahi tugas dan dapatkan poin bonus dari setiap
@@ -141,7 +141,7 @@
                                     </div> <!-- .row -->
                                 </div> <!-- .card-body -->
                                 <div class="card-footer">
-                                    <a href="{{ url('/tugas') }}"
+                                    <a href="{{ url('/point') }}"
                                         class="d-flex justify-content-between text-muted"><span>Jelajahi
                                             Tugas</span><i class="fe fe-chevron-right"></i></a>
                                 </div> <!-- .card-footer -->

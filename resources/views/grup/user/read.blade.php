@@ -136,7 +136,7 @@
 
                                             <div class="col-md-2">
                                                 <div class="mb-2">
-                                                    <a href="{{ route('indexChat') }}">
+                                                    <a href="{{ route('indexChat', ['slug' => $item->slug]) }}">
                                                         <button class="btn btn-success"> <i
                                                                 class="fe fe-message-circle fe-12"></i>
                                                             Join Diskusi</button>

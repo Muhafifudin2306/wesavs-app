@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gift;
 use App\Models\Point;
 use App\Models\UserHasPoint;
 use Carbon\Carbon;
@@ -20,5 +21,11 @@ class PointController extends Controller
                                 ->sum('point');
         $points = Point::latest()->get();
         return view('point.read', compact('myPoint', 'endOfYear', 'points'));
+    }
+
+    public function settingGift()
+    {
+        $gift = Gift::latest()->get();
+        return view('setting.gift.read', compact('gift'));
     }
 }

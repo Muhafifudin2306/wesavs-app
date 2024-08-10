@@ -6,7 +6,7 @@
         <!-- nav bar -->
         <div class="d-flex justify-content-center w-100">
             <div class="mt-4 mb-5">
-                <img width="35" src="{{ asset('image/auth/twemoji_letter-w.png') }}" alt="">
+                <img width="75" src="{{ asset('image/auth/logo-wesavs.png') }}" alt="">
             </div>
         </div>
         <ul class="navbar-nav flex-fill w-100 mb-2">
@@ -78,6 +78,12 @@
                     <a class="nav-link" href="{{ route('indexSettingTugas') }}">
                         <i class="fe fe-file fe-16"></i>
                         <span class="ml-3 item-text">Manajemen Tugas</span>
+                    </a>
+                </li>
+                <li class="nav-item w-100">
+                    <a class="nav-link" href="{{ route('indexSettingGift') }}">
+                        <i class="fe fe-archive fe-16"></i>
+                        <span class="ml-3 item-text">Manajemen Hadiah</span>
                     </a>
                 </li>
             @endrole
