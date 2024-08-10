@@ -56,10 +56,10 @@
                                                     <hr>
                                                     {!! $item->description !!}
                                                 </th>
+                                                <td>{{ $item->point }}</td>
                                                 <td>
                                                     {{ $item->updated_at->format('d F Y') }}
                                                 </td>
-                                                <td>{{ $item->point }}</td>
                                                 <th>
                                                     <div class="d-flex">
                                                         <div class="left-button">
@@ -94,23 +94,23 @@
                         <form id="blogForm" enctype="multipart/form-data">
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label for="name">Gambar Hadiah</label>
-                                    <input type="file" id="file" class="form-control" name="cover" required>
+                                    <label for="image">Gambar Hadiah</label>
+                                    <input type="file" id="image" class="form-control" name="image" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="title">Nama Hadiah</label>
-                                    <input type="text" class="form-control" placeholder="Masukkan Judul Blog"
-                                        name="title" id="title" required>
+                                    <label for="name">Nama Hadiah</label>
+                                    <input type="text" class="form-control" placeholder="Masukkan Nama Hadiah"
+                                        name="name" id="name" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="title">Jumlah Point</label>
-                                    <input type="text" class="form-control" placeholder="Masukkan Judul Blog"
-                                        name="title" id="title" required>
+                                    <label for="point">Jumlah Point</label>
+                                    <input type="number" min="1" class="form-control"
+                                        placeholder="Masukkan Jumlah Point" name="point" id="point" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="content">Deskripsi Hadiah</label>
                                     <textarea id="content-add" name="content" class="form-control" id="content" cols="30" rows="10"
-                                        placeholder="Masukkan konten blog" required></textarea>
+                                        placeholder="Masukkan deskripsi hadiah" required></textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -132,30 +132,30 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form class="update-form" data-action="{{ url('/setting/home/update/' . $item->id) }}"
+                            <form class="update-form" data-action="{{ url('/setting/gift/update/' . $item->id) }}"
                                 method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <img src="{{ Storage::url($item->image) }}" alt="..."
                                             class="avatar-img rounded w-100">
-                                        <label for="name">Gambar Hadiah</label>
-                                        <input type="file" id="file" class="form-control" name="cover">
+                                        <label for="image">Gambar Hadiah</label>
+                                        <input type="file" id="image" class="form-control" name="image">
                                     </div>
                                     <div class="form-group">
-                                        <label for="title">Nama Hadiah</label>
+                                        <label for="name">Nama Hadiah</label>
                                         <input type="text" value="{{ $item->name }}" class="form-control"
-                                            placeholder="Masukkan Judul Blog" name="title" id="title" required>
+                                            placeholder="Masukkan Nama Hadiah" name="name" id="name" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="title">Jumlah Point</label>
+                                        <label for="point">Jumlah Point</label>
                                         <input type="text" value="{{ $item->point }}" class="form-control"
-                                            placeholder="Masukkan Judul Blog" name="title" id="title" required>
+                                            placeholder="Masukkan Point Hadiah" name="point" id="point" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="content">Deskripsi Hadiah</label>
-                                        <textarea id="content-edit" name="content" class="form-control" cols="30" rows="10"
-                                            placeholder="Masukkan konten blog" required>{{ $item->description }}</textarea>
+                                        <label for="description">Deskripsi Hadiah</label>
+                                        <textarea id="content-edit" name="description" class="form-control" cols="30" rows="10"
+                                            placeholder="Masukkan Deskripsi Hadiah" required>{{ $item->description }}</textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -192,7 +192,7 @@
                 Notiflix.Confirm.show('Konfirmasi', 'Apakah Anda yakin ingin menghapus data ini?', 'Ya',
                     'Batal',
                     function() {
-                        fetch(`home/delete/${cardId}`, {
+                        fetch(`gift/delete/${cardId}`, {
                                 method: 'DELETE',
                                 headers: {
                                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
@@ -200,7 +200,7 @@
                             })
                             .then(response => response.json())
                             .then(data => {
-                                Notiflix.Notify.success("Data Blog berhasil dihapus!", {
+                                Notiflix.Notify.success("Data Hadiah berhasil dihapus!", {
                                     timeout: 3000
                                 });
 
@@ -220,7 +220,7 @@
                 event.preventDefault();
                 const formData = new FormData(blogForm);
 
-                fetch(`home/storeBlog`, {
+                fetch(`gift/storeGift`, {
                         method: 'POST',
                         headers: {
                             'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -229,7 +229,7 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        Notiflix.Notify.success("Data blog berhasil dibuat!", {
+                        Notiflix.Notify.success("Data Hadiah berhasil dibuat!", {
                             timeout: 3000
                         });
                         location.reload();

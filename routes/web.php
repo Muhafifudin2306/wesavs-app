@@ -59,6 +59,9 @@ Route::prefix('setting')->group(function () {
     });
     Route::prefix('gift')->group(function () {
         Route::get('/', [App\Http\Controllers\PointController::class, 'settingGift'])->name('indexSettingGift');
+        Route::post('/storeGift', [App\Http\Controllers\PointController::class, 'storeGift'])->name('storeGift');
+        Route::delete('/delete/{id}', [App\Http\Controllers\PointController::class, 'destroyGift'])->name('deleteGift');
+        Route::post('/update/{id}', [App\Http\Controllers\PointController::class, 'updateGift'])->name('updateSettingGift');
     });
 });
 
