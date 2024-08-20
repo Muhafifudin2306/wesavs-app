@@ -63,6 +63,18 @@ Route::prefix('setting')->group(function () {
         Route::delete('/delete/{id}', [App\Http\Controllers\PointController::class, 'destroyGift'])->name('deleteGift');
         Route::post('/update/{id}', [App\Http\Controllers\PointController::class, 'updateGift'])->name('updateSettingGift');
     });
+
+    Route::prefix('order')->group(function () {
+        Route::get('/', [App\Http\Controllers\OrderController::class, 'index'])->name('indexSettingOrder');
+        Route::post('/update/dikirim/{id}', [App\Http\Controllers\OrderController::class, 'changeStatusDikirim'])->name('changeStatusDikirim');
+        Route::post('/update/selesai/{id}', [App\Http\Controllers\OrderController::class, 'changeStatusDone'])->name('changeStatusDone');
+        Route::post('/update/pending/{id}', [App\Http\Controllers\OrderController::class, 'changeStatusPending'])->name('changeStatusPending');
+    });
+});
+
+Route::prefix('order')->group(function () {
+    Route::get('/user', [App\Http\Controllers\PointController::class, 'indexUserOrder'])->name('indexUserOrder');
+    Route::post('add/{id}', [App\Http\Controllers\PointController::class, 'orderGift'])->name('orderGift');
 });
 
 Route::prefix('akun')->group(function () {

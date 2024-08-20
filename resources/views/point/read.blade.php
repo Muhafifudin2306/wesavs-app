@@ -68,123 +68,152 @@
                     </div> <!-- / .col-md-3 -->
                 </div>
 
-
-                <h2 class="h3 mb-0 page-title">Tukarkan Poin Saya</h2>
+                <h2 class="h3 mb-2 page-title">Tukarkan Poin Saya</h2>
 
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="card shadow mb-4">
-                            <div class="card-body">
-                                <div class="mt-2">
-                                    <a href="">
-                                        <img src="./assets/avatars/face-1.jpg" alt="..."
-                                            class="avatar-img rounded w-100">
-                                    </a>
-                                </div>
-                                <div class="card-text my-1">
-                                    <h5 class="mt-3 mb-2">
-                                        <strong class="card-title my-0">Gelang persahabatan </strong>
-                                    </h5>
-                                    <p class="small"><span>Mari gunakan gelang
-                                            persahabatan dari wesavs untuk couple yang sedang berbahagia</span></p>
-                                </div>
-                            </div> <!-- ./card-text -->
-                            <div class="card-footer">
-                                <div class="row align-items-center justify-content-between">
-                                    <div class="col-auto">
-                                        <small>
-                                            <span class="dot dot-lg bg-success mr-1"></span> 120 Point </small>
+                    @foreach ($gifts as $item)
+                        <div class="col-md-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body">
+                                    <div class="mt-2">
+                                        <a href="">
+                                            <img src="{{ Storage::url($item->image) }}" alt="..."
+                                                class="avatar-img rounded w-100">
+                                        </a>
                                     </div>
-                                    <div class="col-auto">
-                                        <div class="file-action">
-                                            <button class="btn btn-info">Tukarkan Poin</button>
+                                    <div class="card-text my-1">
+                                        <h5 class="mt-3 mb-2">
+                                            <strong class="card-title my-0">{{ $item->name }}</strong>
+                                        </h5>
+                                        <p class="small"><span>{!! $item->description !!}</span></p>
+                                    </div>
+                                </div> <!-- ./card-text -->
+                                <div class="card-footer">
+                                    <div class="row align-items-center justify-content-between">
+                                        <div class="col-auto">
+                                            <small>
+                                                <span class="dot dot-lg bg-success mr-1"></span> {{ $item->point }} Point
+                                            </small>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="file-action">
+                                                @if ($myPoint >= $item->point)
+                                                    <button class="btn btn-info" data-toggle="modal"
+                                                        data-target="#giftModal-{{ $item->id }}">Tukarkan Poin</button>
+                                                @else
+                                                    <button class="btn btn-secondary" disabled> Poin Belum Cukup</button>
+                                                @endif
+
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div> <!-- /.card-footer -->
-                        </div>
-                    </div> <!-- .col -->
-                    <div class="col-md-4">
-                        <div class="card shadow mb-4">
-                            <div class="card-body">
-                                <div class="mt-2">
-                                    <a href="">
-                                        <img src="./assets/avatars/face-1.jpg" alt="..."
-                                            class="avatar-img rounded w-100">
-                                    </a>
-                                </div>
-                                <div class="card-text my-1">
-                                    <h5 class="mt-3 mb-2">
-                                        <strong class="card-title my-0">Gelang persahabatan </strong>
-                                    </h5>
-                                    <p class="small"><span>Mari gunakan gelang
-                                            persahabatan dari wesavs untuk couple yang sedang berbahagia</span></p>
-                                </div>
-                            </div> <!-- ./card-text -->
-                            <div class="card-footer">
-                                <div class="row align-items-center justify-content-between">
-                                    <div class="col-auto">
-                                        <small>
-                                            <span class="dot dot-lg bg-success mr-1"></span> 120 Point </small>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="file-action">
-                                            <button class="btn btn-info">Tukarkan Poin</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> <!-- /.card-footer -->
-                        </div>
-                    </div> <!-- .col -->
-                    <div class="col-md-4">
-                        <div class="card shadow mb-4">
-                            <div class="card-body">
-                                <div class="mt-2">
-                                    <a href="">
-                                        <img src="./assets/avatars/face-1.jpg" alt="..."
-                                            class="avatar-img rounded w-100">
-                                    </a>
-                                </div>
-                                <div class="card-text my-1">
-                                    <h5 class="mt-3 mb-2">
-                                        <strong class="card-title my-0">Gelang persahabatan </strong>
-                                    </h5>
-                                    <p class="small"><span>Mari gunakan gelang
-                                            persahabatan dari wesavs untuk couple yang sedang berbahagia</span></p>
-                                </div>
-                            </div> <!-- ./card-text -->
-                            <div class="card-footer">
-                                <div class="row align-items-center justify-content-between">
-                                    <div class="col-auto">
-                                        <small>
-                                            <span class="dot dot-lg bg-success mr-1"></span> 120 Point </small>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="file-action">
-                                            <button class="btn btn-info">Tukarkan Poin</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> <!-- /.card-footer -->
-                        </div>
-                    </div> <!-- .col -->
-                    <div class="col-md-9">
-                    </div> <!-- .col -->
+                                </div> <!-- /.card-footer -->
+                            </div>
+                        </div> <!-- .col -->
+                    @endforeach
                 </div> <!-- .row -->
-                <nav aria-label="Table Paging" class="my-3">
-                    <ul class="pagination justify-content-end mb-0">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                </nav>
             </div> <!-- .row -->
+            @foreach ($gifts as $item)
+                <div class="modal fade" id="giftModal-{{ $item->id }}" tabindex="-1" aria-labelledby="blogModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="blogModalLabel">Tukarkan Poin</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form class="update-form" data-action="{{ url('order/add/' . $item->id) }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="card-body">
+                                                <div class="mt-2">
+                                                    <a href="">
+                                                        <img src="{{ Storage::url($item->image) }}" alt="..."
+                                                            class="avatar-img rounded w-100">
+                                                    </a>
+                                                </div>
+                                                <div class="card-text my-1">
+                                                    <h5 class="mt-3 mb-2">
+                                                        <strong class="card-title my-0">{{ $item->name }}</strong>
+                                                    </h5>
+                                                    <p class="small"><span>{!! $item->description !!}</span></p>
+                                                    <small>
+                                                        <span class="dot dot-lg bg-success mr-1"></span>
+                                                        {{ $item->point }} Point
+                                                    </small>
+                                                </div>
+                                            </div> <!-- ./card-text -->
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="title">Nama Penerima</label>
+                                                <input type="text" value="{{ Auth::user()->name }}" class="form-control"
+                                                    placeholder="Masukkan Nama" name="name" id="name" disabled>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="title">Nomor WA Penerima</label>
+                                                <input type="text" value="{{ Auth::user()->number }}"
+                                                    class="form-control" placeholder="Masukkan Nomor" name="number"
+                                                    id="number" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="content">Alamat Tujuan</label>
+                                                <textarea id="content-edit" name="location" class="form-control" cols="30" rows="10"
+                                                    placeholder="Masukkan alamat" required></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-primary">Order Sekarang</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </main>
     </div> <!-- .container-fluid -->
 @endsection
 
 @section('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const updateForms = document.querySelectorAll('.update-form');
 
+            updateForms.forEach(form => {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    const formData = new FormData(form);
+
+                    fetch(form.getAttribute('data-action'), {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            Notiflix.Notify.success("Pemesanan Berhasil!", {
+                                timeout: 3000
+                            });
+
+                            location.reload();
+                        })
+                        .catch(error => {
+                            Notiflix.Notify.failure('Error:', error);
+                        });
+                });
+            });
+        });
+    </script>
 @endsection

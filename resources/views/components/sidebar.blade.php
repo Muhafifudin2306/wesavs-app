@@ -66,6 +66,12 @@
                         <span class="ml-3 item-text">My Point</span>
                     </a>
                 </li>
+                <li class="nav-item w-100">
+                    <a class="nav-link" href="{{ route('indexUserOrder') }}">
+                        <i class="fe fe-shopping-cart fe-16"></i>
+                        <span class="ml-3 item-text">My Order</span>
+                    </a>
+                </li>
             @endrole
             @role('admin')
                 <li class="nav-item w-100">
@@ -84,6 +90,12 @@
                     <a class="nav-link" href="{{ route('indexSettingGift') }}">
                         <i class="fe fe-archive fe-16"></i>
                         <span class="ml-3 item-text">Manajemen Hadiah</span>
+                    </a>
+                </li>
+                <li class="nav-item w-100">
+                    <a class="nav-link" href="{{ route('indexSettingOrder') }}">
+                        <i class="fe fe-shopping-cart fe-16"></i>
+                        <span class="ml-3 item-text">Pesanan Peserta</span>
                     </a>
                 </li>
             @endrole
