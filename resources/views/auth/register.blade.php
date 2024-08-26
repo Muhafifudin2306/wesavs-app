@@ -9,7 +9,7 @@
                 @csrf
                 <div class="mx-auto text-center my-4">
                     <div class="mb-3">
-                        <img width="50" src="{{ asset('image/auth/twemoji_letter-w.png') }}" alt="">
+                        <img width="75" src="{{ asset('image/auth/logo-wesavs.png') }}" alt="">
                     </div>
 
                     <h5 class="mb-5 font-weight-bold">WESAVS Register</h5>
