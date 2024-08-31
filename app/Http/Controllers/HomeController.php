@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Factor;
+use App\Models\Gallery;
+use App\Models\Gift;
 use App\Models\Grup;
 use App\Models\Impact;
 use App\Models\Mitigation;
@@ -237,22 +239,68 @@ class HomeController extends Controller
         $sectionFourLocation = SettingLanding::where('name', 'section-4-location')->first()->description ?? null;
         $sectionFourNumber = SettingLanding::where('name', 'section-4-number')->first()->description ?? null;
         $sectionFourEmail = SettingLanding::where('name', 'section-4-email')->first()->description ?? null;
-        return view('setting.landing.read', compact('landing','sectionOneDesc','sectionOneHeroBg','sectionFourLocation','sectionFourNumber','sectionFourEmail'));
+        $gallery = Gallery::latest()->get();
+        return view('setting.landing.read', compact('landing','sectionOneDesc','sectionOneHeroBg','sectionFourLocation','sectionFourNumber','sectionFourEmail','gallery'));
     }
 
     public function changeValueLanding(Request $request)
-{
-    SettingLanding::where('name', 'section-1-desc')->first()->update(['description' => $request->input('description-one')]);
-    $coverPath = null;
-    if ($request->hasFile('hero-bg-one')) {
-        $coverPath = $request->file('hero-bg-one')->store('hero', 'public');
-        SettingLanding::where('name', 'section-1-hero-bg')->first()->update(['description' => $coverPath]);
-    };
-    
-    SettingLanding::where('name', 'section-4-location')->first()->update(['description' => $request->input('location-four')]);
-    SettingLanding::where('name', 'section-4-number')->first()->update(['description' => $request->input('number-four')]);
-    SettingLanding::where('name', 'section-4-email')->first()->update(['description'  => $request->input('email-four')]);
+    {
+        SettingLanding::where('name', 'section-1-desc')->first()->update(['description' => $request->input('description-one')]);
+        $coverPath = null;
+        if ($request->hasFile('hero-bg-one')) {
+            $coverPath = $request->file('hero-bg-one')->store('hero', 'public');
+            SettingLanding::where('name', 'section-1-hero-bg')->first()->update(['description' => $coverPath]);
+        };
+        
+        SettingLanding::where('name', 'section-4-location')->first()->update(['description' => $request->input('location-four')]);
+        SettingLanding::where('name', 'section-4-number')->first()->update(['description' => $request->input('number-four')]);
+        SettingLanding::where('name', 'section-4-email')->first()->update(['description'  => $request->input('email-four')]);
 
-    return response()->json(['message' => 'Update Data Berhasil!'], 201);
-}
+        return response()->json(['message' => 'Update Data Berhasil!'], 201);
+    }
+
+    public function storeGallery(Request $request)
+    {
+        $coverPath = null;
+        if ($request->hasFile('image')) {
+            $coverPath = $request->file('image')->store('gallery', 'public');
+        }
+
+        Gallery::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'description' => $request->content,
+            'image' => $coverPath
+        ]);
+
+        return response()->json(['message' => 'Store Data Berhasil!'], 201);
+    }
+
+    public function deleteGallery($id)
+    {
+        $gallery = Gallery::find($id);
+
+        $gallery->delete();
+
+        return response()->json(['success' => 'Delete Gallery Successfully']);
+    }
+
+    public function updateGallery(Request $request, $id)
+    {
+        $gallery = Gallery::find($id);
+
+        $gallery->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'description' => $request->description
+        ]);
+        $coverPath = null;
+        if ($request->hasFile('image')) {
+            $coverPath = $request->file('image')->store('gallery', 'public');
+            $gallery->update([
+                'image' => $coverPath,
+            ]);
+        };
+        return response()->json(['message' => 'Update Data Berhasil!'], 201);
+    }
 }

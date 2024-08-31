@@ -72,6 +72,9 @@ Route::prefix('setting')->group(function () {
     Route::prefix('landing')->group(function () {
         Route::get('/', [App\Http\Controllers\HomeController::class, 'settingLanding'])->name('indexSettingLanding');
         Route::post('/changeValue', [App\Http\Controllers\HomeController::class, 'changeValueLanding'])->name('changeValueLanding');
+        Route::post('/storeGallery', [App\Http\Controllers\HomeController::class, 'storeGallery'])->name('storeGallery');
+        Route::delete('/deleteGallery/{id}', [App\Http\Controllers\HomeController::class, 'deleteGallery'])->name('deleteGallery');
+        Route::post('/updateGallery/{id}', [App\Http\Controllers\HomeController::class, 'updateGallery'])->name('updateSettingGallery');
     });
 });
 
