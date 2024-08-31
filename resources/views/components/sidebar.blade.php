@@ -18,6 +18,12 @@
             </li>
             @role('admin')
                 <li class="nav-item w-100">
+                    <a class="nav-link" href="{{ route('indexSettingLanding') }}">
+                        <i class="fe fe-layout fe-16"></i>
+                        <span class="ml-3 item-text">Manajemen Landing Page</span>
+                    </a>
+                </li>
+                <li class="nav-item w-100">
                     <a class="nav-link" href="{{ route('indexSettingHome') }}">
                         <i class="fe fe-archive fe-16"></i>
                         <span class="ml-3 item-text">Manajemen Berita</span>

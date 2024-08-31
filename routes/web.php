@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\LandingController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\LandingController::class, 'index'])->name('landing');
 
 Auth::routes();
 
@@ -67,6 +67,11 @@ Route::prefix('setting')->group(function () {
         Route::post('/update/dikirim/{id}', [App\Http\Controllers\OrderController::class, 'changeStatusDikirim'])->name('changeStatusDikirim');
         Route::post('/update/selesai/{id}', [App\Http\Controllers\OrderController::class, 'changeStatusDone'])->name('changeStatusDone');
         Route::post('/update/pending/{id}', [App\Http\Controllers\OrderController::class, 'changeStatusPending'])->name('changeStatusPending');
+    });
+
+    Route::prefix('landing')->group(function () {
+        Route::get('/', [App\Http\Controllers\HomeController::class, 'settingLanding'])->name('indexSettingLanding');
+        Route::post('/changeValue', [App\Http\Controllers\HomeController::class, 'changeValueLanding'])->name('changeValueLanding');
     });
 });
 

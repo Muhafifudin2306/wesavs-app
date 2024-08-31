@@ -104,7 +104,7 @@
 
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center"
-        style="background: url('{{ asset('asset/img/bg-landing/' . $sectionOneHeroBg) }}') top left;">
+        style="background: url('{{ Storage::url($sectionOneHeroBg) }}') top left;">
         <div class="container" data-aos="zoom-out" data-aos-delay="100">
             <h1>Welcome to <span>WESAVS</span></h1>
             <h2>{{ $sectionOneDesc }}</h2>

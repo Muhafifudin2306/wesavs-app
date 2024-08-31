@@ -8,6 +8,7 @@ use App\Models\Grup;
 use App\Models\Impact;
 use App\Models\Mitigation;
 use App\Models\Point;
+use App\Models\SettingLanding;
 use App\Models\User;
 use App\Models\UserHasPoint;
 use Carbon\Carbon;
@@ -226,4 +227,32 @@ class HomeController extends Controller
 
         return response()->json(['success' => 'Delete Mitigation Successfully']);
     }
+
+    
+    public function settingLanding()
+    {
+        $landing = SettingLanding::latest()->get();
+        $sectionOneDesc = SettingLanding::where('name', 'section-1-desc')->first()->description ?? null;
+        $sectionOneHeroBg = SettingLanding::where('name', 'section-1-hero-bg')->first()->description ?? null;
+        $sectionFourLocation = SettingLanding::where('name', 'section-4-location')->first()->description ?? null;
+        $sectionFourNumber = SettingLanding::where('name', 'section-4-number')->first()->description ?? null;
+        $sectionFourEmail = SettingLanding::where('name', 'section-4-email')->first()->description ?? null;
+        return view('setting.landing.read', compact('landing','sectionOneDesc','sectionOneHeroBg','sectionFourLocation','sectionFourNumber','sectionFourEmail'));
+    }
+
+    public function changeValueLanding(Request $request)
+{
+    SettingLanding::where('name', 'section-1-desc')->first()->update(['description' => $request->input('description-one')]);
+    $coverPath = null;
+    if ($request->hasFile('hero-bg-one')) {
+        $coverPath = $request->file('hero-bg-one')->store('hero', 'public');
+        SettingLanding::where('name', 'section-1-hero-bg')->first()->update(['description' => $coverPath]);
+    };
+    
+    SettingLanding::where('name', 'section-4-location')->first()->update(['description' => $request->input('location-four')]);
+    SettingLanding::where('name', 'section-4-number')->first()->update(['description' => $request->input('number-four')]);
+    SettingLanding::where('name', 'section-4-email')->first()->update(['description'  => $request->input('email-four')]);
+
+    return response()->json(['message' => 'Update Data Berhasil!'], 201);
+}
 }
