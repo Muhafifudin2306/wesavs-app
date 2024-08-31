@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gallery;
 use App\Models\SettingLanding;
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
@@ -15,6 +16,7 @@ class LandingController extends Controller
         $sectionFourNumber = SettingLanding::where('name', 'section-4-number')->first()->description ?? null;
         $sectionFourEmail = SettingLanding::where('name', 'section-4-email')->first()->description ?? null;
         $gallery = Gallery::latest()->get();
-        return view('welcome', compact('sectionOneDesc', 'sectionOneHeroBg', 'sectionFourLocation','sectionFourNumber','sectionFourEmail', 'gallery'));
+        $team = Team::latest()->get();
+        return view('welcome', compact('sectionOneDesc', 'sectionOneHeroBg', 'sectionFourLocation','sectionFourNumber','sectionFourEmail', 'gallery', 'team'));
     }
 }

@@ -11,6 +11,7 @@ use App\Models\Impact;
 use App\Models\Mitigation;
 use App\Models\Point;
 use App\Models\SettingLanding;
+use App\Models\Team;
 use App\Models\User;
 use App\Models\UserHasPoint;
 use Carbon\Carbon;
@@ -240,7 +241,8 @@ class HomeController extends Controller
         $sectionFourNumber = SettingLanding::where('name', 'section-4-number')->first()->description ?? null;
         $sectionFourEmail = SettingLanding::where('name', 'section-4-email')->first()->description ?? null;
         $gallery = Gallery::latest()->get();
-        return view('setting.landing.read', compact('landing','sectionOneDesc','sectionOneHeroBg','sectionFourLocation','sectionFourNumber','sectionFourEmail','gallery'));
+        $team = Team::latest()->get();
+        return view('setting.landing.read', compact('landing','sectionOneDesc','sectionOneHeroBg','sectionFourLocation','sectionFourNumber','sectionFourEmail','gallery', 'team'));
     }
 
     public function changeValueLanding(Request $request)
@@ -298,6 +300,49 @@ class HomeController extends Controller
         if ($request->hasFile('image')) {
             $coverPath = $request->file('image')->store('gallery', 'public');
             $gallery->update([
+                'image' => $coverPath,
+            ]);
+        };
+        return response()->json(['message' => 'Update Data Berhasil!'], 201);
+    }
+
+    public function storeTeam(Request $request)
+    {
+        $coverPath = null;
+        if ($request->hasFile('image')) {
+            $coverPath = $request->file('image')->store('team', 'public');
+        }
+
+        Team::create([
+            'name' => $request->name,
+            'role' => $request->role,
+            'image' => $coverPath
+        ]);
+
+        return response()->json(['message' => 'Store Data Berhasil!'], 201);
+    }
+
+    public function deleteTeam($id)
+    {
+        $team = Team::find($id);
+
+        $team->delete();
+
+        return response()->json(['success' => 'Delete Team Successfully']);
+    }
+
+    public function updateTeam(Request $request, $id)
+    {
+        $team = Team::find($id);
+
+        $team->update([
+            'name' => $request->name,
+            'role' => $request->role
+        ]);
+        $coverPath = null;
+        if ($request->hasFile('image')) {
+            $coverPath = $request->file('image')->store('team', 'public');
+            $team->update([
                 'image' => $coverPath,
             ]);
         };

@@ -75,6 +75,9 @@ Route::prefix('setting')->group(function () {
         Route::post('/storeGallery', [App\Http\Controllers\HomeController::class, 'storeGallery'])->name('storeGallery');
         Route::delete('/deleteGallery/{id}', [App\Http\Controllers\HomeController::class, 'deleteGallery'])->name('deleteGallery');
         Route::post('/updateGallery/{id}', [App\Http\Controllers\HomeController::class, 'updateGallery'])->name('updateSettingGallery');
+        Route::post('/storeTeam', [App\Http\Controllers\HomeController::class, 'storeTeam'])->name('storeTeam');
+        Route::delete('/deleteTeam/{id}', [App\Http\Controllers\HomeController::class, 'deleteTeam'])->name('deleteTeam');
+        Route::post('/updateTeam/{id}', [App\Http\Controllers\HomeController::class, 'updateTeam'])->name('updateSettingTeam');
     });
 });
 

@@ -139,6 +139,74 @@
                         </div>
                     </div> <!-- simple table -->
                 </div>
+                <div class="row my-4">
+                    <!-- Small table -->
+                    <div class="col-md-12">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-5">
+                                    <div class="left-content">
+                                        <h5 class="mt-2">Pengaturan Team</h5>
+                                    </div>
+                                    <div class="right-content">
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#teamModal">
+                                            <i class="fe fe-plus fe-16"></i> Tambah</button>
+                                    </div>
+                                </div> <!-- /.col-12 -->
+                                <!-- table -->
+                                <table class="table datatables" id="dataTable-2">
+                                    <thead>
+                                        <tr>
+                                            <th><strong>No</strong></th>
+                                            <th><strong>Gambar</strong></th>
+                                            <th><strong>Deskripsi</strong></th>
+                                            <th><strong>Dibuat Pada</strong></th>
+                                            <th><strong>Aksi</strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $no = 1;
+                                        @endphp
+                                        @foreach ($team as $item)
+                                            <tr>
+                                                <th>{{ $no++ }}</th>
+                                                <th>
+                                                    <div class="avatar">
+                                                        <img src="{{ Storage::url($item->image) }}" alt="..."
+                                                            class="avatar-img rounded" width="200">
+                                                    </div>
+                                                </th>
+                                                <th>
+                                                    <p class="font-weight-bold">{{ $item->name }}</p>
+                                                    <hr>
+                                                    <p>{{ $item->role }}</p>
+
+                                                </th>
+                                                <td>
+                                                    {{ $item->updated_at->format('d F Y') }}
+                                                </td>
+                                                <th>
+                                                    <div class="d-flex">
+                                                        <div class="left-button">
+                                                            <i class="fe fe-edit mx-1 fe-16 text-warning cursor-pointer"
+                                                                data-toggle="modal"
+                                                                data-target="#teamEditModal-{{ $item->id }}"></i>
+                                                        </div>
+                                                        <div class="right-button">
+                                                            <i class="fe fe-trash delete-team mx-1 fe-16 text-danger cursor-pointer"
+                                                                data-card-id="{{ $item->id }}"></i>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div> <!-- simple table -->
+                </div>
             </div> <!-- .row -->
             <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel"
                 aria-hidden="true">
@@ -217,6 +285,98 @@
                     </div>
                 </div>
             @endforeach
+            <div class="modal fade" id="teamModal" tabindex="-1" aria-labelledby="galleryModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="blogModalLabel">Tambah Data Team</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form id="teamForm" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="image-tean">Gambar</label>
+                                            <input type="file" id="image-tean" class="form-control" name="image"
+                                                required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name-staff">Nama Staf</label>
+                                            <input type="text" class="form-control" placeholder="Masukkan Nama Staff"
+                                                name="name" id="name-staff" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="role-staff">Jabatan Staff</label>
+                                            <input type="text" class="form-control" placeholder="Masukkan Nama Staff"
+                                                name="role" id="role-staff" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @foreach ($team as $item)
+                <div class="modal fade" id="teamEditModal-{{ $item->id }}" tabindex="-1"
+                    aria-labelledby="blogModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="blogModalLabel">Edit Team</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form class="update-form" data-action="{{ url('/setting/landing/updateTeam/' . $item->id) }}"
+                                method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <img src="{{ Storage::url($item->image) }}" alt="..."
+                                            class="avatar-img rounded w-100">
+                                        <label for="image">Gambar</label>
+                                        <input type="file" id="image-tean" class="form-control" name="image"
+                                            required>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name-staff">Nama Staf</label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Masukkan Nama Staff" name="name" id="name-staff"
+                                                    value="{{ $item->name }}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="role-staff">Jabatan Staff</label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Masukkan Nama Staff" name="role" id="role-staff"
+                                                    value="{{ $item->role }}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </main>
     </div> <!-- .container-fluid -->
 @endsection
@@ -236,6 +396,37 @@
                     'Batal',
                     function() {
                         fetch(`landing/deleteGallery/${cardId}`, {
+                                method: 'DELETE',
+                                headers: {
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                }
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                Notiflix.Notify.success("Data Setting berhasil dihapus!", {
+                                    timeout: 3000
+                                });
+
+                                location.reload();
+                            })
+                            .catch(error => {
+                                Notiflix.Notify.failure('Error:', error);
+                            });
+                    });
+            });
+        });
+    </script>
+    <script>
+        const deleteTeam = document.querySelectorAll('.delete-team');
+
+        deleteTeam.forEach(button => {
+            button.addEventListener('click', function() {
+                const cardId = button.dataset.cardId;
+
+                Notiflix.Confirm.show('Konfirmasi', 'Apakah Anda yakin ingin menghapus data ini?', 'Ya',
+                    'Batal',
+                    function() {
+                        fetch(`landing/deleteTeam/${cardId}`, {
                                 method: 'DELETE',
                                 headers: {
                                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
@@ -324,6 +515,33 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const teamForm = document.getElementById('teamForm');
+            teamForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const formData = new FormData(teamForm);
+
+                fetch(`landing/storeTeam`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        Notiflix.Notify.success("Data setting berhasil disimpan!", {
+                            timeout: 3000
+                        });
+                        location.reload();
+                    })
+                    .catch(error => {
+                        Notiflix.Notify.failure('Error:', error);
+                    });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
             const blogForm = document.getElementById('galleryForm');
             blogForm.addEventListener('submit', function(event) {
                 event.preventDefault();
@@ -351,6 +569,15 @@
     </script>
     <script>
         $('#dataTable-1').DataTable({
+            autoWidth: true,
+            "lengthMenu": [
+                [16, 32, 64, -1],
+                [16, 32, 64, "All"]
+            ]
+        });
+    </script>
+    <script>
+        $('#dataTable-2').DataTable({
             autoWidth: true,
             "lengthMenu": [
                 [16, 32, 64, -1],
