@@ -68,7 +68,7 @@
                 </li> --}}
                 <li class="nav-item w-100">
                     <a class="nav-link" href="{{ route('indexPoint') }}">
-                        <i class="fe fe-grid fe-16"></i>
+                        <i class="fe fe-award fe-16"></i>
                         <span class="ml-3 item-text">My Point</span>
                     </a>
                 </li>
@@ -119,15 +119,49 @@
                 </li>
             </ul>
         @endrole
+        @role('user')
+            <p class="text-muted nav-heading mt-2 mb-1">
+                <span>Konsultasi</span>
+            </p>
+            <ul class="navbar-nav flex-fill w-100 mb-2">
+                <li class="nav-item w-100">
+                    <a class="nav-link" href="{{ route('indexPsikiater') }}">
+                        <i class="fe fe-compass fe-16"></i>
+                        <span class="ml-3 item-text">Layanan Konsultasi</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav flex-fill w-100 mb-2">
+                <li class="nav-item w-100">
+                    <a class="nav-link" href="{{ route('indexEbook') }}">
+                        <i class="fe fe-tag fe-16"></i>
+                        <span class="ml-3 item-text">Konsultasi Saya</span>
+                    </a>
+                </li>
+            </ul>
+        @endrole
         @role('admin')
             <p class="text-muted nav-heading mt-2 mb-1">
-                <span>Pengaturan Edukasi</span>
+                <span>Edukasi</span>
             </p>
             <ul class="navbar-nav flex-fill w-100 mb-2">
                 <li class="nav-item w-100">
                     <a class="nav-link" href="{{ route('indexSettingEbook') }}">
-                        <i class="fe fe-user fe-16"></i>
+                        <i class="fe fe-book fe-16"></i>
                         <span class="ml-3 item-text">Manajemen E-Book</span>
+                    </a>
+                </li>
+            </ul>
+        @endrole
+        @role('admin')
+            <p class="text-muted nav-heading mt-2 mb-1">
+                <span>Konsultasi</span>
+            </p>
+            <ul class="navbar-nav flex-fill w-100 mb-2">
+                <li class="nav-item w-100">
+                    <a class="nav-link" href="{{ route('indexSettingPsikiater') }}">
+                        <i class="fe fe-compass fe-16"></i>
+                        <span class="ml-3 item-text">Manajemen Psikiater</span>
                     </a>
                 </li>
             </ul>
@@ -147,7 +181,7 @@
         @endrole
         @role('admin')
             <p class="text-muted nav-heading mt-2 mb-1">
-                <span>Pengaturan Akun</span>
+                <span>Akun</span>
             </p>
             <ul class="navbar-nav flex-fill w-100 mb-2">
                 <li class="nav-item w-100">
@@ -160,7 +194,7 @@
         @endrole
         @role('user')
             <div class="btn-box w-100 mt-4 mb-1">
-                <a href="/" target="_blank" class="btn mb-2 btn-primary btn-lg btn-block">
+                <a href="http://wa.link/qc9ftc" target="_blank" class="btn mb-2 btn-primary btn-lg btn-block">
                     <i class="fe fe-phone fe-12 mx-2"></i><span class="small">Hubungi Kami</span>
                 </a>
             </div>

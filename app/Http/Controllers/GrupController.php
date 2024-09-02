@@ -50,7 +50,7 @@ class GrupController extends Controller
             $imagePath = $request->file('image')->store('images', 'public');
         }
 
-        gRUP::create([
+        Grup::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'description' => $request->description,

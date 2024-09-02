@@ -69,6 +69,13 @@ Route::prefix('setting')->group(function () {
         Route::post('/update/pending/{id}', [App\Http\Controllers\OrderController::class, 'changeStatusPending'])->name('changeStatusPending');
     });
 
+    Route::prefix('psikiater')->group(function () {
+        Route::get('/', [App\Http\Controllers\ConsultationController::class, 'indexSettingPsikiater'])->name('indexSettingPsikiater');
+        Route::post('/storePsikiater', [App\Http\Controllers\ConsultationController::class, 'storePsikiater'])->name('storePsikiater');
+        Route::delete('/delete/{id}', [App\Http\Controllers\ConsultationController::class, 'destroyPsikiater'])->name('deletePsikiater');
+        Route::post('/update/{id}', [App\Http\Controllers\ConsultationController::class, 'updatePsikiater'])->name('updateSettingPsikiater');
+    });
+
     Route::prefix('landing')->group(function () {
         Route::get('/', [App\Http\Controllers\HomeController::class, 'settingLanding'])->name('indexSettingLanding');
         Route::post('/changeValue', [App\Http\Controllers\HomeController::class, 'changeValueLanding'])->name('changeValueLanding');
@@ -90,6 +97,10 @@ Route::prefix('akun')->group(function () {
     Route::get('/profil', [App\Http\Controllers\AkunController::class, 'index'])->name('indexProfil');
     Route::post('/updateData', [App\Http\Controllers\AkunController::class, 'updateData'])->name('updateAkun');
     Route::post('/crop-image-upload', [App\Http\Controllers\AkunController::class, 'uploadCropImage'])->name('crop-image-upload');
+});
+
+Route::prefix('consultation')->group(function () {
+    Route::get('/', [App\Http\Controllers\ConsultationController::class, 'index'])->name('indexPsikiater');
 });
 
 Route::prefix('tugas')->group(function () {
