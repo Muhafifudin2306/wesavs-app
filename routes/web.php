@@ -101,6 +101,8 @@ Route::prefix('akun')->group(function () {
 
 Route::prefix('consultation')->group(function () {
     Route::get('/', [App\Http\Controllers\ConsultationController::class, 'index'])->name('indexPsikiater');
+    Route::post('/storeOrder', [App\Http\Controllers\ConsultationController::class, 'storeOrder'])->name('storeOrder');
+    Route::get('/user', [App\Http\Controllers\ConsultationController::class, 'indexUserConsul'])->name('indexUserConsul');
 });
 
 Route::prefix('tugas')->group(function () {

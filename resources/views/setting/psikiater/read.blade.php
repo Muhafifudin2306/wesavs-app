@@ -33,7 +33,7 @@
                                             <th><strong>Gambar Psikiater</strong></th>
                                             <th><strong>Deskripsi</strong></th>
                                             <th><strong>Jumlah Entry</strong></th>
-                                            <th><strong>Dibuat Pada</strong></th>
+                                            <th><strong>Jam Layanan</strong></th>
                                             <th><strong>Aksi</strong></th>
                                         </tr>
                                     </thead>
@@ -57,8 +57,7 @@
                                                     {{ $item->description }}
                                                 </th>
                                                 <td>{{ $item->entry }}</td>
-                                                <td>
-                                                    {{ $item->updated_at->format('d F Y') }}
+                                                <td>{{ date('h:i', strtotime($item->buka)) . ' - ' . date('h:i', strtotime($item->tutup)) . ' WIB' }}
                                                 </td>
                                                 <th>
                                                     <div class="d-flex">
@@ -68,8 +67,8 @@
                                                                 data-target="#blogEditModal-{{ $item->id }}"></i>
                                                         </div>
                                                         <div class="right-button">
-                                                            <i
-                                                                class="fe fe-trash blog-delete mx-1 fe-16 text-danger cursor-pointer"data-card-id="{{ $item->id }}"></i>
+                                                            <i class="fe fe-trash blog-delete mx-1 fe-16 text-danger cursor-pointer"
+                                                                data-card-id="{{ $item->id }}"></i>
                                                         </div>
                                                     </div>
                                                 </th>
@@ -184,6 +183,22 @@
                                         <label for="name">Nama Psikiater</label>
                                         <input type="text" value="{{ $item->name }}" class="form-control"
                                             placeholder="Masukkan Nama Psikiater" name="name" id="name" required>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="buka">Jam Buka</label>
+                                                <input type="time" value="{{ $item->buka }}" class="form-control"
+                                                    name="buka" id="buka" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="tutup">Jam Tutup</label>
+                                                <input type="time" value="{{ $item->tutup }}" class="form-control"
+                                                    name="tutup" id="tutup" required>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="entry">Jumlah Kuota Dalam Sehari</label>

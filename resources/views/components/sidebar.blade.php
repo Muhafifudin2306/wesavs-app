@@ -49,11 +49,11 @@
                 </li>
             @endrole
         </ul>
-        <p class="text-muted nav-heading mt-2 mb-1">
-            <span>Sosial</span>
-        </p>
         <ul class="navbar-nav flex-fill w-100 mb-2">
             @role('user')
+                <p class="text-muted nav-heading mt-2 mb-1">
+                    <span>Sosial</span>
+                </p>
                 <li class="nav-item w-100">
                     <a class="nav-link" href="{{ route('indexGrup') }}">
                         <i class="fe fe-users fe-16"></i>
@@ -80,6 +80,9 @@
                 </li>
             @endrole
             @role('admin')
+                <p class="text-muted nav-heading mt-2 mb-1">
+                    <span>Sosial</span>
+                </p>
                 <li class="nav-item w-100">
                     <a class="nav-link" href="{{ route('indexSettingGrup') }}">
                         <i class="fe fe-users fe-16"></i>
@@ -133,7 +136,7 @@
             </ul>
             <ul class="navbar-nav flex-fill w-100 mb-2">
                 <li class="nav-item w-100">
-                    <a class="nav-link" href="{{ route('indexEbook') }}">
+                    <a class="nav-link" href="{{ route('indexUserConsul') }}">
                         <i class="fe fe-tag fe-16"></i>
                         <span class="ml-3 item-text">Konsultasi Saya</span>
                     </a>

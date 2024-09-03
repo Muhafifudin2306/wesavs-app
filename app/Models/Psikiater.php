@@ -16,4 +16,9 @@ class Psikiater extends Model
     {
         return $this->belongsTo(User::class, 'id_user');
     }
+
+    public function consultations()
+    {
+        return $this->hasMany(Consultation::class, 'id_psikiater');
+    }
 }

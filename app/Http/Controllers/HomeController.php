@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Consultation;
 use App\Models\Factor;
 use App\Models\Gallery;
 use App\Models\Gift;
@@ -10,6 +11,7 @@ use App\Models\Grup;
 use App\Models\Impact;
 use App\Models\Mitigation;
 use App\Models\Point;
+use App\Models\Psikiater;
 use App\Models\SettingLanding;
 use App\Models\Team;
 use App\Models\User;
@@ -72,7 +74,12 @@ class HomeController extends Controller
             }
         }
 
-        return view('home', compact('blogs','newPointAdded','loginPoint','registerPoint', 'factor', 'impact','mitigation', 'userCount', 'blogCount', 'grupCount', 'taskCount'));
+        // Psikiater
+        $psikiaterId = Psikiater::where('id_user',  Auth::user()->id)->first();
+        $consultation = Consultation::where('id_psikiater', $psikiaterId->id)->get();
+        // dd($consultation);
+
+        return view('home', compact('blogs','newPointAdded','loginPoint','registerPoint', 'factor', 'impact','mitigation', 'userCount', 'blogCount', 'grupCount', 'taskCount', 'consultation'));
     }
 
     public function settingHome()

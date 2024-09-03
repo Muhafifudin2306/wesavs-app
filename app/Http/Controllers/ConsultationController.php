@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Consultation;
 use App\Models\Psikiater;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class ConsultationController extends Controller
 {
@@ -17,7 +20,18 @@ class ConsultationController extends Controller
 
     public function index()
     {
-        return view('psikiater.read');
+        $today = Carbon::today()->format('Y-m-d');
+
+        $psikiater = Psikiater::withCount(['consultations' => function ($query) use ($today) {
+            $query->whereDate('date', $today);
+        }])->get();
+        return view('psikiater.read', compact('psikiater'));
+    }
+
+    public function indexUserConsul()
+    {
+        $consultation = Consultation::where('id_user', Auth::user()->id)->get();
+        return view('consultation.user.read', compact('consultation'));
     }
 
     public function indexSettingPsikiater(){
@@ -86,5 +100,19 @@ class ConsultationController extends Controller
             'email' => $request->email
         ]);
         return response()->json(['message' => 'Update Data Berhasil!'], 201);
+    }
+
+    public function storeOrder(Request $request)
+    {
+        Consultation::create([
+            'id_user' => Auth::user()->id,
+            'number' => $request->number,
+            'problem' => $request->problem,
+            'status' => 'Pending',
+            'date' => $request->date,
+            'id_psikiater' => $request->id_psikiater
+        ]);
+
+        return response()->json(['success' => 'Order Gift Successfully']);
     }
 }
