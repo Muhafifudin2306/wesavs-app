@@ -49,9 +49,13 @@
                                                             {{ date('h:i', strtotime($item->buka)) . ' - ' . date('h:i', strtotime($item->tutup)) . ' WIB' }}</span></strong>
                                                 </div>
                                                 <div class="col mb-2">
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                    {{-- <button type="button" class="btn btn-primary" data-toggle="modal"
                                                         data-target="#blogEditModal-{{ $item->id }}">Order
-                                                        Layanan</button>
+                                                        Layanan</button> --}}
+                                                    <a target="_blank" href="https://wa.me/{{ $item->user->number }}">
+                                                        <button class="btn btn-outline-success">Hubungi
+                                                            {{ $item->user->number }}</button>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>

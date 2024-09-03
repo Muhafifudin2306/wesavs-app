@@ -74,12 +74,7 @@ class HomeController extends Controller
             }
         }
 
-        // Psikiater
-        $psikiaterId = Psikiater::where('id_user',  Auth::user()->id)->first();
-        $consultation = Consultation::where('id_psikiater', $psikiaterId->id)->get();
-        // dd($consultation);
-
-        return view('home', compact('blogs','newPointAdded','loginPoint','registerPoint', 'factor', 'impact','mitigation', 'userCount', 'blogCount', 'grupCount', 'taskCount', 'consultation'));
+        return view('home', compact('blogs','newPointAdded','loginPoint','registerPoint', 'factor', 'impact','mitigation', 'userCount', 'blogCount', 'grupCount', 'taskCount'));
     }
 
     public function settingHome()

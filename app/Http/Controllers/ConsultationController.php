@@ -49,6 +49,7 @@ class ConsultationController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'number' => $request->number,
             'password' => Hash::make($request->password),
         ]);
         $userRole = Role::where('name', 'psikiater')->first();
@@ -97,7 +98,8 @@ class ConsultationController extends Controller
         $user = User::find($psikiater->id_user);
 
         $user->update([
-            'email' => $request->email
+            'email' => $request->email,
+            'number' => $request->number
         ]);
         return response()->json(['message' => 'Update Data Berhasil!'], 201);
     }

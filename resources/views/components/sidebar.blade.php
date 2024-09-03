@@ -134,14 +134,14 @@
                     </a>
                 </li>
             </ul>
-            <ul class="navbar-nav flex-fill w-100 mb-2">
+            {{-- <ul class="navbar-nav flex-fill w-100 mb-2">
                 <li class="nav-item w-100">
                     <a class="nav-link" href="{{ route('indexUserConsul') }}">
                         <i class="fe fe-tag fe-16"></i>
                         <span class="ml-3 item-text">Konsultasi Saya</span>
                     </a>
                 </li>
-            </ul>
+            </ul> --}}
         @endrole
         @role('admin')
             <p class="text-muted nav-heading mt-2 mb-1">

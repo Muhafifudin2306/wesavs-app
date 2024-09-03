@@ -53,6 +53,7 @@
                                                 <th>
                                                     <p class="font-weight-bold">{{ $item->name }}</p>
                                                     <p>{{ $item->user->email }}</p>
+                                                    <p>{{ $item->user->number }}</p>
                                                     <hr>
                                                     {{ $item->description }}
                                                 </th>
@@ -93,10 +94,22 @@
                         <form id="blogForm" enctype="multipart/form-data">
                             <div class="modal-body">
                                 <h6 class="py-3">Informasi Akun</h6>
-                                <div class="form-group">
-                                    <label for="email">Email Psikiater</label>
-                                    <input type="email" class="form-control" id="inputEmail" value="{{ old('email') }}"
-                                        name="email" placeholder="example@gmail.com" required autocomplete="email">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email">Email Psikiater</label>
+                                            <input type="email" class="form-control" id="inputEmail"
+                                                value="{{ old('email') }}" name="email" placeholder="example@gmail.com"
+                                                required autocomplete="email">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="number">Nomor Psikiater</label>
+                                            <input type="number" class="form-control" name="number"
+                                                placeholder="086789098xxxxx" required autocomplete="number">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Password</label>
@@ -124,8 +137,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="tutup">Jam Tutup</label>
-                                            <input type="time" class="form-control" placeholder="Masukkan Nama Psikiater"
-                                                name="tutup" id="tutup" required>
+                                            <input type="time" class="form-control"
+                                                placeholder="Masukkan Nama Psikiater" name="tutup" id="tutup"
+                                                required>
                                         </div>
                                     </div>
                                 </div>
@@ -166,11 +180,23 @@
                                 @csrf
                                 <div class="modal-body">
                                     <h6 class="py-3">Informasi Akun</h6>
-                                    <div class="form-group">
-                                        <label for="email">Email Psikiater</label>
-                                        <input type="email" class="form-control" id="inputEmail"
-                                            value="{{ $item->user->email }}" name="email"
-                                            placeholder="example@gmail.com" required autocomplete="email">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="email">Email Psikiater</label>
+                                                <input type="email" class="form-control" id="inputEmail"
+                                                    value="{{ $item->user->email }}" name="email"
+                                                    placeholder="example@gmail.com" required autocomplete="email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="number">Nomor Psikiater</label>
+                                                <input type="number" class="form-control" id="inputNumber"
+                                                    value="{{ $item->user->number }}" name="number"
+                                                    placeholder="086789098xxxxx" required autocomplete="number">
+                                            </div>
+                                        </div>
                                     </div>
                                     <h6 class="py-3">Informasi Umum</h6>
                                     <div class="form-group">
