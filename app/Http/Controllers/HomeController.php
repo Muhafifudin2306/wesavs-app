@@ -134,7 +134,7 @@ class HomeController extends Controller
     public function settingFactor()
     {
         $factor = Factor::latest()->first();
-        return view('setting.Factor.read', compact('factor'));
+        return view('setting.factor.read', compact('factor'));
     }
 
     public function storeFactor(Request $request)
